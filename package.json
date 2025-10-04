@@ -1,0 +1,21 @@
+{
+  "name": "weatherbuouy",
+  "version": "0.1.0",
+  "description": "The node app responsible for the visual interface of the weather buouy.",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "keywords": [
+    "weather",
+    "buouy",
+    "temperature"
+  ],
+  "author": "isaac and lars",
+  "license": "ISC",
+  "dependencies": {
+    "animejs": "^4.2.0",
+    "chart.js": "^4.5.0",
+    "express": "^5.1.0"
+  }
+}
