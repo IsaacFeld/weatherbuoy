@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Buoy</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body style="background-image: var(--bg-gradientbrown)">
+    <header
+      style="background-color: var(--bg-header); width: full; height: 100px"
+    >
+      <span id="headerTitle">Temperature Tracking</span>
+    </header>
+    <section id="section-one">
+      <dropdown id="chartSelector"> </dropdown>
+      <chart-container> </chart-container>
+    </section>
+    <section id="section-two" style="padding-left: 60px">
+      <div style="flex-direction: column; display: flex; row-gap: 3em">
+        <span
+          style="
+            font-size: 48px;
+            font-weight: bold;
+
+            color: var(--seaside-50);
+          "
+          >Want to know when you can finally take a swim?</span
+        >
+        <span
+          style="
+            font-size: 20px;
+            width: 700px;
+
+            color: var(--seaside-50);
+          "
+          >Using our custom mailing system you can setup temperature alerts.
+          Choose a body of water, a temperature, and enter your email. Once
+          submitted, whenever that temperature is reached, you’ll be the first
+          to know.</span
+        >
+        <span
+          style="
+            font-size: 32px;
+            width: 700px;
+
+            color: var(--seaside-50);
+          "
+          >Alert Types</span
+        >
+        <span
+          style="
+            font-size: 20px;
+            width: 700px;
+
+            color: var(--seaside-50);
+          "
+          >You can choose between instant alerts and accurate alerts. Instant
+          alerts will be sent as soon as the temperature is reached, whereas
+          accurate alerts will come out if the target temperature has been
+          reached for 7 consecutive days, providing more accuracy.
+        </span>
+      </div>
+      <form-container
+        style="
+          position: relative;
+          left: 886px;
+          top: -310px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 0.5em;
+          width: fit-content;
+        "
+      >
+        <span
+          style="
+            font-weight: bold;
+            color: var(--seaside-50);
+            font-size: 40px;
+            text-align: center;
+            width: 500px;
+          "
+        >
+          Create an Alert
+        </span>
+        <form
+          action="/alert"
+          id="alert"
+          style="
+            width: 500px;
+            height: 550px;
+            background-color: #232e5b;
+            border-radius: 24px;
+          "
+        >
+          <form-field
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              column-gap: 1em;
+              margin-top: 4em;
+              margin-left: 2em;
+              margin-right: 2em;
+            "
+          >
+            <span style="font-size: 24px; color: var(--seaside-50)"
+              >Pick a place</span
+            >
+            <dropdown id="alertSelector"></dropdown>
+          </form-field>
+          <form-field
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              column-gap: 1em;
+              margin-top: 4em;
+              margin-left: 2em;
+              margin-right: 2em;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+                align-items: center;
+              "
+            >
+              <span style="font-size: 24px; color: var(--seaside-50)"
+                >Set a threshold</span
+              >
+              <toggle-unit
+                onclick="if(this.classList.contains('celsius'))
+                { this.classList.add('fahrenheit'); this.classList.remove('celsius')
+              } else { this.classList.add('celsius'); this.classList.remove('fahrenheit')}"
+                style="
+                  width: 53px;
+                  height: 24px;
+                  background-color: var(--seaside-50);
+                  border-radius: 60px;
+                "
+              >
+                <toggle-ball
+                  style="
+                    height: 24px;
+                    width: 24px;
+                    background-color: var(--ocean-200);
+                    border-radius: 75px;
+                    position: relative;
+                    display: block;
+                  "
+                ></toggle-ball>
+              </toggle-unit>
+            </div>
+            <temperature-slider
+              style="
+                border-radius: 60px;
+                width: 398px;
+                height: 32px;
+                background-image: var(--temp-gradient);
+                align-self: center;
+                margin-top: 2em;
+              "
+            >
+              <div
+                style="
+                  height: 32px;
+                  width: 32px;
+                  border-radius: 75px;
+                  background-color: var(--seaside-50);
+                  position: relative;
+                  display: block;
+                "
+                draggable="true"
+              ></div>
+            </temperature-slider>
+          </form-field>
+          <form-field
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              column-gap: 1em;
+              margin-top: 4em;
+              margin-left: 2em;
+              margin-right: 2em;
+            "
+          >
+            <span style="font-size: 24px; color: var(--seaside-50)"
+              >Enter your Email</span
+            >
+            <input type="email" name="email" autocomplete="on" />
+          </form-field>
+          <form-field
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: start;
+              row-gap: 1em;
+              margin-top: 2em;
+              margin-left: 2em;
+              margin-right: 2em;
+            "
+          >
+            <checkbox-container>
+              <checkbox onclick="this.classList.toggle('checked')">
+                <check style="opacity: 0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="var(--seaside-50)"
+                      d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z"
+                    />
+                  </svg>
+                </check>
+              </checkbox>
+              <span
+                style="
+                  font-size: 1em;
+                  font-weight: normal;
+                  color: var(--seaside-50);
+                "
+                >Option one example</span
+              >
+            </checkbox-container>
+
+            <checkbox-container>
+              <checkbox onclick="this.classList.toggle('checked')">
+                <check style="opacity: 0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="var(--seaside-50)"
+                      d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z"
+                    />
+                  </svg>
+                </check>
+              </checkbox>
+              <span
+                style="
+                  font-size: 1em;
+                  font-weight: normal;
+                  color: var(--seaside-50);
+                "
+                >Option one example</span
+              >
+            </checkbox-container>
+          </form-field>
+          <form-field
+            style="
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: center;
+              margin-top: 2em;
+              margin-left: 2em;
+              margin-right: 2em;
+            "
+          >
+            <button
+              type="submit"
+              label="submit"
+              style="
+                align-self: center;
+
+                font-size: 24px;
+                font-weight: normal;
+                color: var(--seaside-50);
+              "
+            >
+              SUBMIT
+            </button>
+          </form-field>
+        </form>
+      </form-container>
+    </section>
+    <section id="section-three" style="padding-left: 60px">
+      <div style="display: flex; flex-direction: column; row-gap: 2em">
+        <span
+          style="font-size: 48px; font-weight: bold; color: var(--seaside-100)"
+          >Information
+        </span>
+        <span style="font-size: 20px; color: var(--seaside-100); width: 700px">
+          Our Temperature measurement device operates with an error margin of
+          5%, so don’t sue us if it ends up being a degree or two off.
+        </span>
+        <span style="font-size: 20px; color: var(--seaside-100); width: 700px">
+          Our device is equipped with a mini solar panel which keeps it charged
+          year-round, and stays absolutely quiet. Good luck finding it.
+        </span>
+      </div>
+    </section>
+    <section id="section-four" style="padding-left: 60px">
+      <div
+        style="
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        "
+      >
+        <span
+          style="
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--seaside-150);
+            width: 100%;
+          "
+          >You've reached the bottom...
+        </span>
+        <seaweed style="align-self: center; margin-top: 12em;">
+          <img src="svgs/seaweed.svg" alt="seaweed" />
+        </seaweed>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 60%;
+            align-self: center;
+          "
+        >
+          <contact-card
+            style="
+              background-color: #5d595451;
+
+            "
+          >
+            <span
+              style="
+                font-size: 24px;
+                font-weight: bold;
+                color: #ffffff;
+                text-align: center;
+                padding-top: 1em;
+              "
+              >Designed by Isaac</span
+            >
+            <social>
+              <img src="svgs/email.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >isaacbfeldman@gmail.com</span
+              >
+            </social>
+            <social>
+              <img src="svgs/github.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >github.com/IsaacFeld</span
+              >
+            </social>
+            <social>
+              <img src="svgs/web.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >isaacf.me</span
+              >
+            </social>
+          </contact-card>
+          <contact-card
+            style="
+              background-color: #65677063;
+            "
+          >
+            <span
+              style="
+                font-size: 24px;
+                font-weight: bold;
+                color: #ffffff;
+                text-align: center;
+                padding-top: 1em;
+              "
+              >Engineered by Lars</span
+            >
+            <social>
+              <img src="svgs/email.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >larskjeastman@gmail.com</span
+              >
+            </social>
+            <social>
+              <img src="svgs/github.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >...</span
+              >
+            </social>
+            <social>
+              <img src="svgs/web.svg" />
+              <span style="font-size: 16px; color: #ffffff"
+                >...</span
+              >
+            </social>
+          </contact-card>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,10 +1,11 @@
 {
-  "name": "weatherbuouy",
+  "name": "weatherbuoy",
   "version": "0.1.0",
   "description": "The node app responsible for the visual interface of the weather buouy.",
   "main": "main.js",
   "scripts": {
-    "test": "node main.js"
+    "start": "node main.js",
+    "dev": "nodemon main.js"
   },
   "keywords": [
     "weather",
@@ -17,5 +18,8 @@
     "animejs": "^4.2.0",
     "chart.js": "^4.5.0",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }

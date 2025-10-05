@@ -1,0 +1,242 @@
+@font-face {
+  font-family: libSans;
+  src: url(fonts/LiberationSans-Regular.ttf);
+}
+@font-face {
+  font-family: libSans;
+  src: url(fonts/LiberationSans-Bold.ttf);
+  font-weight: bold;
+}
+@font-face {
+  font-family: libSans;
+  src: url(fonts/LiberationSans-Italic.ttf);
+  font-style: italic;
+}
+@font-face {
+  font-family: libSans;
+  src: url(fonts/LiberationSans-BoldItalic.ttf);
+  font-style: italic;
+  font-weight: bold;
+}
+
+*{
+  font-family: 'libSans';
+  scrollbar-width: 0px;
+}
+
+:root {
+  --bg-gradient: linear-gradient(
+    180deg,
+    hsl(240deg 53% 45%) 0%,
+    hsl(238deg 54% 42%) 2%,
+    hsl(236deg 54% 40%) 4%,
+    hsl(234deg 54% 37%) 6%,
+    hsl(233deg 53% 35%) 9%,
+    hsl(233deg 51% 33%) 11%,
+    hsl(232deg 48% 30%) 14%,
+    hsl(231deg 50% 29%) 17%,
+    hsl(230deg 52% 27%) 20%,
+    hsl(229deg 53% 26%) 24%,
+    hsl(228deg 55% 24%) 27%,
+    hsl(227deg 57% 23%) 31%,
+    hsl(226deg 60% 21%) 34%,
+    hsl(226deg 59% 20%) 38%,
+    hsl(226deg 59% 18%) 42%,
+    hsl(226deg 59% 17%) 46%,
+    hsl(226deg 58% 15%) 51%,
+    hsl(226deg 57% 14%) 56%,
+    hsl(227deg 56% 13%) 61%,
+    hsl(224deg 56% 11%) 66%,
+    hsl(224deg 53% 10%) 71%,
+    hsl(223deg 50% 9%) 77%,
+    hsl(221deg 48% 7%) 84%,
+    hsl(219deg 46% 6%) 91%,
+    hsl(220deg 30% 4%) 100%
+  );
+
+  --bg-gradientbrown: linear-gradient(
+    180deg,
+    hsl(240deg 53% 45%) 0%,
+    hsl(238deg 54% 42%) 2%,
+    hsl(236deg 54% 40%) 4%,
+    hsl(234deg 54% 37%) 6%,
+    hsl(233deg 53% 35%) 9%,
+    hsl(233deg 51% 33%) 11%,
+    hsl(232deg 48% 30%) 14%,
+    hsl(231deg 50% 29%) 17%,
+    hsl(230deg 52% 27%) 20%,
+    hsl(229deg 53% 26%) 24%,
+    hsl(228deg 55% 24%) 27%,
+    hsl(227deg 57% 23%) 31%,
+    hsl(226deg 60% 21%) 34%,
+    hsl(226deg 59% 20%) 38%,
+    hsl(226deg 59% 18%) 42%,
+    hsl(226deg 59% 17%) 46%,
+    hsl(226deg 58% 15%) 51%,
+    hsl(226deg 57% 14%) 56%,
+    hsl(227deg 56% 13%) 61%,
+    hsl(224deg 56% 11%) 66%,
+    hsl(224deg 53% 10%) 71%,
+    hsl(223deg 50% 9%) 77%,
+    hsl(221deg 48% 7%) 84%,
+    hsl(219deg 46% 6%) 91%,
+    hsl(0, 11%, 34%) 100%
+  );
+
+
+  --temp-gradient: linear-gradient(
+    90deg,
+    var(--deep-ocean-200) 13%,
+    var(--deep-ocean-100) 26%,
+    var(--seaside-150) 39%,
+    #76c28f 52%,
+    #dade75 65%,
+    #eebd79 78%,
+    #ed7464 91%,
+    #e94832 100%
+  );
+
+  --bg-header: #181e51;
+
+  --seaside-50: #dff2eb;
+  --seaside-100: #b9e5e8;
+  --seaside-150: #7ab2d3;
+
+  --ocean-100: #dff5ff;
+  --ocean-200: #67c6e3;
+  --ocean-300: #378ce7;
+  --ocean-400: #5356ff;
+
+  --deep-ocean-400: #3c467b;
+  --deep-ocean-300: #50589c;
+  --deep-ocean-200: #636ccb;
+  --deep-ocean-100: #6e8cfb;
+
+  --bg-isaac-contact: #5d595451;
+  --bg-lars-contact: #65677063;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+#headerTitle {
+  font-family: "libSans";
+  color: var(--seaside-50);
+  font-size: 64px;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+  left: 2.5%;
+}
+
+#section-one {
+  height: 1070px;
+}
+#section-two {
+  height: 800px;
+}
+#section-three {
+  height: 575px;
+}
+#section-four {
+  height: 800px;
+}
+
+#chartSelector {
+  display: block;
+  background-color: var(--seaside-50);
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+  position: relative;
+  top: 223px;
+  left: 20%;
+}
+chart-container {
+  display: block;
+  position: relative;
+  top: 295px;
+  left: 20%;
+  width: 60%;
+  height: 490px;
+  border-radius: 30px;
+  background-color: var(--seaside-50);
+}
+
+#alertSelector {
+  display: block;
+  background-color: var(--seaside-50);
+  height: 40px;
+  width: 160px;
+  border-radius: 10px;
+}
+
+input[type="email"]{
+  outline: none;
+  width: 220px; height: 24px;
+  border-radius: 7px;
+  border: none;
+  padding-left: 1em;
+  font-family: 'libSans';
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--deep-ocean-400)
+}
+
+checkbox{
+  background-color: var(--ocean-100);
+  width: 24px;
+  height: 24px;
+  outline: none;
+  border: none;
+  accent-color: transparent;
+  border-radius: 4px;
+}
+checkbox.checked{
+  background-color: var(--ocean-300);
+}
+check{
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+checkbox.checked check{
+  opacity: 1 !important;
+}
+checkbox-container{
+  display: flex; flex-direction: row; align-items: center; column-gap: 2em;
+}
+
+button[type="submit"]{
+  background-color: var(--deep-ocean-400);
+  width: 220px;
+  height: 48px;
+  outline: none;
+  border: none;
+  border-radius: 18px;
+  transition: background-color 0.3s ease-in;
+}
+button[type="submit"]:hover{
+  background-color: var(--deep-ocean-300);
+}
+
+contact-card{
+  width: 327px;
+  height: 244px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  row-gap: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+
+social{
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+  padding-left: 2em;
+}
+
