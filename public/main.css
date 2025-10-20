@@ -107,6 +107,8 @@
   --ocean-300: #378ce7;
   --ocean-400: #5356ff;
 
+  --wave: hsl(240, 53%, 45%);
+
   --deep-ocean-400: #3c467b;
   --deep-ocean-300: #50589c;
   --deep-ocean-200: #636ccb;
@@ -121,14 +123,51 @@ body {
   padding: 0px;
 }
 
+path {
+  transition: fill 0.3s ease-in-out;
+}
+
 #headerTitle {
   font-family: "libSans";
   color: var(--seaside-50);
-  font-size: 64px;
+  font-size: 32px;
   font-weight: bold;
   position: relative;
   top: 10px;
   left: 2.5%;
+}
+
+language-toggle{
+  color: var(--seaside-50);
+  font-size: 32px;
+}
+
+#deutsch{
+  transition: opacity 0.3s ease-in;
+  opacity: 0.4;
+  cursor: pointer
+}
+#deutsch.active{
+  opacity: 1;
+}
+#deutsch:hover{
+  opacity: 0.8
+}
+
+#english{
+  transition: opacity 0.3s ease-in;
+  opacity: 0.4;
+  cursor: pointer
+}
+#english.active{
+  opacity: 1;
+}
+#english:hover{
+  opacity: 0.8
+}
+
+#underwater * {
+  z-index: 4;
 }
 
 #section-one {
@@ -136,12 +175,15 @@ body {
 }
 #section-two {
   height: 800px;
+  z-index: 1;
 }
 #section-three {
   height: 575px;
+  z-index: 1;
 }
 #section-four {
   height: 800px;
+  z-index: 1;
 }
 
 #chartSelector {
