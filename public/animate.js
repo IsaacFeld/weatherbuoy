@@ -1,4 +1,4 @@
-import { onScroll, utils, animate, stagger } from "../modules/anime.esm.min.js";
+import { onScroll, utils, animate, stagger, cubicBezier } from "../modules/anime.esm.min.js";
 
 let waterHeight = document.getElementById('underwater').clientHeight
 let waterWidth = document.documentElement.clientWidth - 32;
@@ -178,15 +178,32 @@ document.addEventListener('scrollend', () => {
 })
 
 
-addEventListener('resize', (event) => {
+addEventListener('resize', () => {
     waterHeight = document.getElementById('underwater').clientHeight
     waterWidth = document.documentElement.clientWidth - 32;
     utils.remove('.bubble')
     bubbleInsert.innerHTML = '';
 
-
-
 })
+
+/* ELEMENT TRANSITIONS */
+const $sectionTwoElements = utils.$('.sec-2-anim')
+console.log($sectionTwoElements)
+for(let i = 1; i < 6; i++){
+    console.log(document.getElementById(`sec-2-anim-${i}`))
+}
+
+animate($sectionTwoElements, {
+    y: {
+        from: 250,
+        to: 0
+
+    },
+    duration: 1000 ,
+    ease: cubicBezier(0.5,0,0.199,0.974),
+    delay: stagger(100)
+})
+
 
 
 
