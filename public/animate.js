@@ -1,35 +1,25 @@
-import { onScroll, utils, animate, stagger, cubicBezier } from "../modules/anime.esm.min.js";
+import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../modules/anime.esm.min.js";
 
+/* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
-let waterWidth = document.documentElement.clientWidth - 32;
-console.log(waterWidth)
-
-const insert = document.getElementById('waveContainer')
-
-/* WAVES */
-
-const MIN_VARIANCE = -2
-const MAX_VARIANCE = 2
-const VARIANCE_DECIMAL_LENGTH = 3;
+let waterWidth = document.documentElement.clientWidth - 32
+let websiteHeight = document.querySelector('body').clientHeight
+let websiteWidth = document.querySelector('body').clientWidth
 
 
-/* WAVE ANIMATION VARIABLES */
+
+/* WAVE ANIMATION */
+
+/* WAVE  PROPERTIES */
 const SPEED = 0.020;
 let AMPLITUDE = 4;
 let WAVE_WIDTH = 66;
-let WAVE_DENSITY = Math.round((waterWidth + 32) / WAVE_WIDTH) + 1; // ON SCREEN CHANGE REDRAW WAVE
+let WAVE_DENSITY = Math.round((waterWidth + 32) / WAVE_WIDTH) + 1;
 let VERTICAL_SHIFT = 6;
-/* GOOD WAVES 
-Amplitude: 2/3/4
-Density: 146
-Width: 33
-Vertical Shift: 4/6
-DURATION 52?
-*/
 
-
+const insert = document.getElementById('waveContainer')
 const currentPath = `M 0 100 H ${WAVE_WIDTH} v -insert H 0 V 0 Z`
-
+/* WAVE SECTION GENERATOR */
 function getDString(phase){
     let y = AMPLITUDE * Math.sin(phase) + VERTICAL_SHIFT
     //const variance = utils.random(MIN_VARIANCE, MAX_VARIANCE, VARIANCE_DECIMAL_LENGTH)
@@ -37,9 +27,6 @@ function getDString(phase){
 
     return currentPath.replace('insert', calculated_y) 
 }
-
-
-
 function generateSVGS(){
         const svgHTML = `<svg width="${WAVE_WIDTH}" height="100" viewBox="0 0 ${WAVE_WIDTH} 87" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path id="wave" d="M 0 100 H ${WAVE_WIDTH} v -100 H 0 V 0 Z" fill="var(--wave)"/>
@@ -50,9 +37,7 @@ function generateSVGS(){
     insert.appendChild(svgElement.cloneNode(true))
     }
 }
-
 generateSVGS()
-
 function animateWaves(){
     let phase = 0;
     const paths = utils.$('#wave')
@@ -68,7 +53,6 @@ function animateWaves(){
     requestAnimationFrame(tick)
 
 }
-
 animateWaves()
 
 /* BUBBLES */
@@ -169,7 +153,7 @@ function startBubbles(){
     )
 }
 
-document.addEventListener('scrollend', () => {
+document.addEventListener('scroll', () => {
     if(utils.$('.bubble').length == 0){
         generateBubbles();
         startBubbles();
@@ -178,33 +162,370 @@ document.addEventListener('scrollend', () => {
 })
 
 
-addEventListener('resize', () => {
+
+
+/* SCROLL ANIMATIONS */
+const $sectionTwoElements = utils.$('.sec-2-anim')
+const $sectionThreeElements = utils.$('.sec-3-anim')
+const $sectionFourElements = utils.$('.sec-4-anim')
+
+createTimeline({
+    autoplay: onScroll({
+        target: utils.$('#section-two')
+    }),
+}).add($sectionTwoElements[0], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 0)
+.add($sectionTwoElements[1], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+},  '<<+=100')
+.add($sectionTwoElements[2], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 300)
+.add($sectionTwoElements[3], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 450)
+.add($sectionTwoElements[4], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1500,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, '<<')
+
+
+createTimeline({
+    autoplay: onScroll({
+        target: utils.$('#section-three')
+    }),
+    delay: 150,
+}).add($sectionThreeElements[0], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 0)
+.add($sectionThreeElements[1], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, '<-=900')
+.add($sectionThreeElements[2], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, '<-=1000')
+
+animate($sectionFourElements[0], {
+    autoplay: onScroll({
+        target: utils.$('#section-four')
+    }),
+    y: {
+        from: 500,
+        to: 0,
+    },
+    scale: {
+        from: 0.75,
+        to: 1,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 1000,
+    delay: 200,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+})
+
+/* FISH ANIMATION */
+let canSpawnFish = true;
+function animateFish(){
+    const el = document.querySelector("seaweed");
+    const rect = el.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const elementBottom = rect.bottom + scrollTop;
+    const documentHeight = document.documentElement.scrollHeight;
+    const distanceFromDocumentBottom = documentHeight - elementBottom;
+    const upper = -1 * distanceFromDocumentBottom
+    const lower = -250
+    const spawnHeight = utils.random(upper, lower)
+    const fish = utils.$('.fish')
+    
+    let chosenFish = fish[Math.round(Math.random() * 3)]
+
+    chosenFish = chosenFish.cloneNode(true)
+    chosenFish.classList.add("fish_copy")
+    let randomScale = Math.round(utils.random(1, 4));
+    chosenFish.classList.add(`scale_${randomScale}`)
+    document.querySelector('#fish_insert').appendChild(chosenFish)
+    chosenFish.style.top = `${spawnHeight}px`
+    let direction = Math.round(Math.random() * 1);
+    if(direction == 1){
+        animate(chosenFish, {
+            left: {
+                from: 0, 
+                to: websiteWidth,
+            },
+            opacity: {
+                from: 0,
+                to: 1,
+                duration: 500,
+            },
+            duration: 5000,
+            ease: 'linear',
+            onComplete: () => {
+                chosenFish.remove()
+            },
+        })
+    }
+    else{
+        chosenFish.classList.add('reversefish')
+        animate(chosenFish, {
+            left: {
+                from: websiteWidth, 
+                to: 0,
+            },
+            opacity: {
+                from: 0,
+                to: 1,
+                duration: 500,
+            },
+            duration: 5000,
+            ease: 'linear',
+            onComplete: () => {
+                chosenFish.remove();
+            },
+        })
+    }
+
+
+}
+document.addEventListener('scroll', () => {
+    if(window.scrollY > (0.55 * websiteHeight) && canSpawnFish){
+        animateFish()
+        setTimeout(() => {
+            animateFish()
+        }, 500)
+        setTimeout(() => {
+            animateFish()
+        }, 1500)
+         setTimeout(() => {
+            animateFish()
+        }, 2500)
+        canSpawnFish = false;
+        setTimeout(() => {
+            canSpawnFish = true;
+        }, 3500)
+    }
+})
+
+let contactMenuAnimation;
+let contactCardTimeline;
+/* CONTACT DROPDOWN */
+animateCard()
+const contactMenu = document.querySelector('.contactMenu')
+const contactMenuExpanded = document.querySelector('.contactMenuExpanded')
+contactMenu.addEventListener('click', () => {
+    if(!contactMenuExpanded.classList.contains('active')){
+        contactCardTimeline.restart()
+        contactMenuAnimation = animate(contactMenuExpanded, {
+            height: {
+                from: 0 ,
+                to: 340,
+            },
+            width: {
+                from: 0,
+                to: 660
+            },
+            opacity: {
+                from: 0,
+                to: 1,
+            },
+            ease: 'inOutBack(0.75)',
+            duration: 800,
+            onComplete: () => {
+                if(contactMenuExpanded.classList.contains('active')){
+                    contactMenuExpanded.classList.remove('active')
+                }
+                else{
+                    contactMenuExpanded.classList.add('active')
+                }
+
+            }
+        })
+    }
+})
+document.addEventListener('click', (event) => {
+    if(contactMenuExpanded.classList.contains('active') && !event.target.classList.contains('contact')){ // So only clicking off of the menu closes it! 
+        if(event.target != contactMenuExpanded){
+            contactMenuAnimation.reverse();
+            contactCardTimeline.revert()
+        }
+
+    }
+
+})
+
+/* Contact Card Animation (SVGs, Anchors, and the Titles) */
+function animateCard(){
+    let titles = utils.$('.contact_title')
+    let { chars: larsTitleChars } = text.splitText(titles[0], {chars: { wrap: 'clip' },});
+    let { chars: isaacTitleChars } = text.splitText(titles[1], {chars: { wrap: 'clip' },});
+    isaacTitleChars = isaacTitleChars.reverse()
+
+    contactCardTimeline = createTimeline()
+
+    const larsOpacityAnimation = animate(titles[0], {
+        opacity: {
+            from: 0,
+            to: 1,
+        },
+        duration: 0,
+    })
+    const isaacOpacityAnimation = animate(titles[1], {
+        opacity: {
+            from: 0,
+            to: 1,
+        },
+        duration: 0,
+    })
+    const larsTitleAnimation = animate(larsTitleChars, {
+        y: [
+            { to: ['-100%', '0%']},
+        ],
+        duration: 500,
+        ease: 'out(3)',
+        delay: stagger(50),
+
+    })
+    
+    const isaacTitleAnimation = animate(isaacTitleChars, {
+        y: [
+            { to: ['100%', '0%']},
+        ],
+
+        duration: 500,
+        ease: 'out(3)',
+        delay: stagger(50),
+
+    })
+
+    const contactSvgPathsLars = utils.$('.contact_path_lars')
+    const contactSvgPathsIsaac = utils.$('.contact_path_isaac')
+    const contactLinksLars = utils.$('.contact_links_lars')
+    const contactLinksIsaac = utils.$('.contact_links_isaac')
+    const contactSvgPathsAnimation = animate(contactSvgPathsLars, {
+        fill: {
+            from: "#000",
+            to: "var(--contact-lars-secondary)"
+        },
+        duration: 1000,
+        ease: 'inOutBack(0.75)',
+    })
+    const contactSvgPathsAnimationTwo = animate(contactSvgPathsIsaac, {
+        fill: {
+            from: "#000",
+            to: "var(--deep-ocean-400)"
+        },
+        duration: 1000,
+        ease: 'out(3)',
+    })
+
+    const contactLinksAnimation = animate(contactLinksLars, {
+        color: {
+            from: "#000",
+            to: "var(--contact-lars-secondary)"
+        },
+        duration: 1000,
+        ease: 'inOutBack(0.75)',
+    })
+    const contactLinksAnimationTwo = animate(contactLinksIsaac, {
+        color: {
+            from: "#000",
+            to: "var(--deep-ocean-400)"
+        },
+        duration: 1000,
+        ease: 'inOutBack(0.75)',
+    })
+        contactCardTimeline.sync(larsOpacityAnimation, 0)
+        contactCardTimeline.sync(larsTitleAnimation, 400)
+        contactCardTimeline.sync(isaacOpacityAnimation, 0)
+        contactCardTimeline.sync(isaacTitleAnimation, 400)
+        contactCardTimeline.sync(contactLinksAnimation, 350)
+        contactCardTimeline.sync(contactLinksAnimationTwo, 350)
+        contactCardTimeline.sync(contactSvgPathsAnimation, 350)
+        contactCardTimeline.sync(contactSvgPathsAnimationTwo, 350)
+
+}
+
+/* RESIZE EVENT */
+document.addEventListener('resize', () => { // Resize Bubble Logic 
+    //TODO add resize  -> wave redraw logic
+    // TODO add resize -> redraw chart logic
     waterHeight = document.getElementById('underwater').clientHeight
     waterWidth = document.documentElement.clientWidth - 32;
     utils.remove('.bubble')
     bubbleInsert.innerHTML = '';
 
 })
-
-/* ELEMENT TRANSITIONS */
-const $sectionTwoElements = utils.$('.sec-2-anim')
-console.log($sectionTwoElements)
-for(let i = 1; i < 6; i++){
-    console.log(document.getElementById(`sec-2-anim-${i}`))
-}
-
-animate($sectionTwoElements, {
-    y: {
-        from: 250,
-        to: 0
-
-    },
-    duration: 1000 ,
-    ease: cubicBezier(0.5,0,0.199,0.974),
-    delay: stagger(100)
-})
-
-
-
-
-
