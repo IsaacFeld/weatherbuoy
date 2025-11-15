@@ -150,7 +150,8 @@ language-toggle, contact-toggle{
 }
 
 /* PRIMARY CONTAINERS OF THE WEBSITE 
-* section-one - Header + Chart + Wave
+* section-one - Header + Chart
+* Wave lives in between these two sections
 * section-two - Alert Form + Alert Description
 * section-three - Information
 * section-four - Bottom + Seaweed + Fish + BubbleSpawner
