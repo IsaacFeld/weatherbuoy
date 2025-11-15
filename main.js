@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
-app.use(express.static('public'))
+const path = require('path')
 
-const port = 3000
+app.use(express.static(path.join(__dirname, 'public')))
+const port = 3001
 
 app.get('/alert', (req, res) => {
     const email = req.query.email ? req.query.email : null;
