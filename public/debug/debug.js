@@ -1,5 +1,5 @@
 async function loadDebugData(){
-
+/*
     let response = await fetch('/debug', {
         method: "POST",
         headers: {
@@ -7,6 +7,7 @@ async function loadDebugData(){
         },
         body: JSON.stringify({"label": "test", "message": "hey!"})
     })
+        */
 
     response = await response.json();
     console.log(response);
