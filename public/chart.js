@@ -130,7 +130,7 @@ const temps = [10.3, 10.21667, 10.2, 10.2, 10.19167, 10.18333,
 9.00833, 9.0, 9.0, 8.90833, 8.96667, 8.9, 8.9, 8.9, 8.95833, 9.075, 9.1,
 9.1, 9.1, 9.1, 9.1];
 
-Chart.defaults.color ="#222493"
+Chart.defaults.color ="#6e8cfb"
 Chart.defaults.elements.point.hitRadius = 20;
 Chart.defaults.plugins.legend.display = false;
 
@@ -138,6 +138,11 @@ const dataPoints = labels.map((label, i) => ({
   x: new Date(label),
   y: temps[i]
 }));
+
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
 
 function getSegmentColor(temp){
   if(temp > 11){
@@ -187,6 +192,8 @@ const config = {
   type: "line",
   data: data,
   options: {
+    maintainAspectRatio: window.innerWidth < 600 ? false : true,
+    aspectRatio: window.innerWidth < 600 ? 0.8 : 2, // mobile = taller
     scales: {
       x: {
         type: "time",
@@ -195,6 +202,7 @@ const config = {
           tooltipFormat: "MMM dd HH:mm"
         },
         ticks: {
+          color: cssVar("--chart-text"),
           callback: (_, index, ticks) => {
             const date = ticks[index].value;
             let formattedDate = formatDay(new Date(date).toISOString().split("T")[0])
@@ -203,16 +211,42 @@ const config = {
             }
             return formattedDate
           }
-        }
+        },
+        grid: { color: cssVar("--chart-grid"),}
       },
       y: {
         ticks: {
+          color: cssVar("--chart-text"),
           callback: value => `${value}℃`
+        },
+        grid: {
+          color: cssVar("--chart-grid"),
         }
+        
       }
     },
   }
 }; 
+
+
 const myChart =  new Chart(ctx, config);
 
+function updateChartTheme() {
+  const opts = myChart.options;
 
+  // Update axis colors
+  opts.scales.x.ticks.color = cssVar("--chart-text");
+  opts.scales.y.ticks.color = cssVar("--chart-text");
+  opts.scales.x.grid.color = cssVar("--chart-grid");
+  opts.scales.y.grid.color = cssVar("--chart-grid");
+
+  // Update legend
+  opts.plugins.legend.labels.color = cssVar("--chart-text");
+
+  myChart.update();
+}
+
+
+document.querySelector('theme-toggle').addEventListener('click', () => {
+  updateChartTheme();
+})

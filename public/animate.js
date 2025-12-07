@@ -2,10 +2,12 @@ import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } 
 
 /* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
-let waterWidth = document.documentElement.clientWidth - 32
+let waterWidth = document.documentElement.clientWidth - 32;
 let websiteHeight = document.querySelector('body').clientHeight
 let websiteWidth = document.querySelector('body').clientWidth
 
+let contactMenuHeight = 340;
+let contactMenuWidth = 660;
 
 
 /* WAVE ANIMATION */
@@ -16,6 +18,13 @@ let AMPLITUDE = 4;
 let WAVE_WIDTH = 66;
 let WAVE_DENSITY = Math.round((waterWidth + 32) / WAVE_WIDTH) + 1;
 let VERTICAL_SHIFT = 6;
+
+/* SMALL SCREEN SETTINGS */
+if(websiteWidth <= 600){
+    WAVE_WIDTH = 24;
+    WAVE_DENSITY = Math.round((waterWidth + 32) / WAVE_WIDTH) + 1;
+    contactMenuWidth = "95vw";
+}
 
 const insert = document.getElementById('waveContainer')
 const currentPath = `M 0 100 H ${WAVE_WIDTH} v -insert H 0 V 0 Z`
@@ -321,18 +330,25 @@ function animateFish(){
     document.querySelector('#fish_insert').appendChild(chosenFish)
     chosenFish.style.top = `${spawnHeight}px`
     let direction = Math.round(Math.random() * 1);
+
     if(direction == 1){
         animate(chosenFish, {
             left: {
-                from: 0, 
-                to: websiteWidth,
+                from: 0 + chosenFish.clientWidth, 
+                to: (websiteWidth - (chosenFish.clientWidth * 3)),
             },
-            opacity: {
+            opacity: [{
                 from: 0,
                 to: 1,
                 duration: 500,
             },
-            duration: 5000,
+            {
+                from: 1, 
+                to: 0,
+                duration: 500,
+                delay: 2000,
+            }],
+            duration: 3000,
             ease: 'linear',
             onComplete: () => {
                 chosenFish.remove()
@@ -343,15 +359,21 @@ function animateFish(){
         chosenFish.classList.add('reversefish')
         animate(chosenFish, {
             left: {
-                from: websiteWidth, 
+                from: websiteWidth - (chosenFish.clientWidth * 4), 
                 to: 0,
             },
-            opacity: {
+            opacity: [{
                 from: 0,
                 to: 1,
                 duration: 500,
             },
-            duration: 5000,
+            {
+                from: 1, 
+                to: 0,
+                duration: 500,
+                delay: 2000,
+            }],
+            duration: 3000,
             ease: 'linear',
             onComplete: () => {
                 chosenFish.remove();
@@ -388,15 +410,16 @@ const contactMenu = document.querySelector('.contactMenu')
 const contactMenuExpanded = document.querySelector('.contactMenuExpanded')
 contactMenu.addEventListener('click', () => {
     if(!contactMenuExpanded.classList.contains('active')){
+        document.querySelector('chart-container').classList.add('hidden')
         contactCardTimeline.restart()
         contactMenuAnimation = animate(contactMenuExpanded, {
             height: {
                 from: 0 ,
-                to: 340,
+                to: contactMenuHeight,
             },
             width: {
                 from: 0,
-                to: 660
+                to: contactMenuWidth
             },
             opacity: {
                 from: 0,
@@ -406,19 +429,25 @@ contactMenu.addEventListener('click', () => {
             duration: 800,
             onComplete: () => {
                 if(contactMenuExpanded.classList.contains('active')){
+                    
                     contactMenuExpanded.classList.remove('active')
+                    
                 }
                 else{
+    
                     contactMenuExpanded.classList.add('active')
+                    
                 }
 
             }
         })
     }
+
 })
 document.addEventListener('click', (event) => {
     if(contactMenuExpanded.classList.contains('active') && !event.target.classList.contains('contact')){ // So only clicking off of the menu closes it! 
         if(event.target != contactMenuExpanded){
+            document.querySelector('chart-container').classList.remove('hidden')
             contactMenuAnimation.reverse();
             contactCardTimeline.revert()
         }
@@ -427,8 +456,14 @@ document.addEventListener('click', (event) => {
 
 })
 
+function getCssVar(name) {
+    console.log(name)
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
 /* Contact Card Animation (SVGs, Anchors, and the Titles) */
 function animateCard(){
+   
     let titles = utils.$('.contact_title')
     let { chars: larsTitleChars } = text.splitText(titles[0], {chars: { wrap: 'clip' },});
     let { chars: isaacTitleChars } = text.splitText(titles[1], {chars: { wrap: 'clip' },});
@@ -477,16 +512,16 @@ function animateCard(){
     const contactLinksIsaac = utils.$('.contact_links_isaac')
     const contactSvgPathsAnimation = animate(contactSvgPathsLars, {
         fill: {
-            from: "#000",
-            to: "var(--contact-lars-secondary)"
+            from: "var(--bg)",
+            to: "var(--contact-primary)"
         },
         duration: 1000,
         ease: 'inOutBack(0.75)',
     })
     const contactSvgPathsAnimationTwo = animate(contactSvgPathsIsaac, {
         fill: {
-            from: "#000",
-            to: "var(--deep-ocean-400)"
+            from: "var(--bg)",
+            to: "var(--contact-primary)"
         },
         duration: 1000,
         ease: 'out(3)',
@@ -494,16 +529,16 @@ function animateCard(){
 
     const contactLinksAnimation = animate(contactLinksLars, {
         color: {
-            from: "#000",
-            to: "var(--contact-lars-secondary)"
+            from: "var(--bg)",
+            to: "var(--contact-primary)"
         },
         duration: 1000,
         ease: 'inOutBack(0.75)',
     })
     const contactLinksAnimationTwo = animate(contactLinksIsaac, {
         color: {
-            from: "#000",
-            to: "var(--deep-ocean-400)"
+            from: "var(--bg)",
+            to: "var(--contact-primary)",
         },
         duration: 1000,
         ease: 'inOutBack(0.75)',

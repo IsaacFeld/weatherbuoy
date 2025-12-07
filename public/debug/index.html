@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html style="background-color: var(--bg);" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="debug.css">    
+    <link rel="stylesheet" href="../main.css">
+
+</head>
+<body style="padding: 5em; background-color: var(--bg);">
+    <div style="display: flex; flex-direction: column;">
+    <div style="display: flex; flex-direction:  row; justify-content: space-between;">
+        <span style="font-size: var(--font-title); color: var(--primary); margin-bottom: 1em;">Big W.B. <span style="color: var(--primary-hover)">Debugger</span> </span>
+        <request-selector onclick="document.querySelector('requests').classList.toggle('active')" style="width: 300px; height: 32px; position: relative; background-color: #FFF;"></request-selector>
+        <requests style="width: 900px; height: fit-content; min-height: 600px; background-color: #FFF;"></requests>
+    </div>
+    
+
+        <debugdata style="display: flex; flex-direction: column; row-gap: 2em; width: 80%; height: 600px; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;">
+            <span>POST REQUEST</span>
+
+            <data style="color: var(--seaside-50)"></data>
+        </debugdata>
+    </div>
+    <script src="debug.js"></script>
+</body>
+
+</html>
