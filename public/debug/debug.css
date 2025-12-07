@@ -1,0 +1,10 @@
+requests{
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    bottom: 120px;
+    right: 100px;
+    position: absolute;
+}
+requests.active{
+    opacity: 1;
+}
