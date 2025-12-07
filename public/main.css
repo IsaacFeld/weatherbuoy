@@ -145,7 +145,6 @@ sky{
 /* UNIVERSAL RULES */
 span{
   width: 100%;
-  color: var(--seaside-50);
 }
 
 /* HEADER */
