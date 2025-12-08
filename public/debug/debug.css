@@ -1,13 +1,142 @@
 requests{
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    bottom: 120px;
+    height: 0;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+    top: 128px;
     right: 100px;
     position: absolute;
+    border-radius: 2em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    width: 400px; overflow-y: scroll;background-color: var(--bg); border: 3px solid var(--primary);
+}
+
+request-selector{
+    border: 3px solid var(--primary);
+    padding: 0.5em 2em 0.5em 2em;
+    width: 500px; height: 32px; position: relative; background-color: var(--bg); border-radius: 0.5em;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    transition: border-color 0.25s ease-in-out;
+}
+
+request-selector:hover{
+    border-color: var(--primary-hover)
+}
+
+request-selector.open svg{
+    transform: rotate(180deg);
+    
+}
+
+svg{
+    transition: transform 0.25s ease-out;
+}
+
+path{
+    pointer-events: none;
+    transition: fill 0.25s ease-in-out;
+}
+request-selector:hover path{
+    fill: var(--primary-hover);
+  
+}
+
+
+request-selector span{
+    text-align: center;
 }
 requests.active{
     opacity: 1;
+    height: 600px;
 }
+
+request_file{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5em;
+    padding-left: 1em;
+    border: 2px solid var(--primary-dark);
+    border-radius: 0.25em;
+
+    transition: border-color 0.25s ease-in-out;
+}
+request_file.deleted{
+    animation-fill-mode: forwards;
+    animation-duration: 0.25s; 
+    animation-name: deleteRequest;
+    animation-timing-function: ease-out;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+
+}
+
+request_file:hover{
+    border-color: var(--primary);
+}
+request_file svg{
+    padding: 0.5em;
+    transition: background-color 0.175s ease-in-out;
+}
+request_file svg:hover{
+    border-radius: 4px;
+    background-color: rgba(245, 29, 29, 0.265);
+
+}
+
 span{
     color: var(--seaside-50);
+}
+
+.debug_title{
+    color:var(--primary-hover);
+    font-size: var(--font-title);
+}
+
+debugdata{
+    display: flex; flex-direction: column; row-gap: 0.5em; width: 80%; height: 600px; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;
+    overflow-y: scroll;
+}
+debugdata.hidden *{
+    display: none;
+}
+debugdata *{
+    user-select: all;
+}
+
+debuginfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    column-gap: 1em;
+
+}
+
+.debug_subtitle{
+    color: var(--primary);
+    font-size: var(--font-standard);
+    width: fit-content; 
+    text-wrap: nowrap;
+}
+
+debuglist{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+    column-gap: 0.5em;
+}
+
+debuglistitem{
+    color: var(--seaside-50)
+}
+
+
+@keyframes deleteRequest {
+    100% { transform: translateX(400px);}
+    
 }

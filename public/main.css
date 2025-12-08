@@ -37,13 +37,17 @@
   --chart-text: var(--primary);
   --chart-grid: #dff2eb70;
   --primary: var(--deep-ocean-100);
+  --primary-dark: #6e8cfb70;
   --primary-hover: var(--ocean-200);
   --secondary-hover: var(--deep-ocean-400-opaque); 
   --tertiary-hover: var(--seaside-100);
   --contact-primary: #3a94f5;
   --contact-primary-hover: #0055FF;
 
-
+  --danger: oklch(0.7 0.05 30);
+  --warning: oklch(0.7 0.05 100);
+  --success: oklch(0.7 0.05 160);
+  --info: oklch(0.7 0.05 260);
 
   --seaside-50: #dff2eb;
   --seaside-100: #b9e5e8;
@@ -117,6 +121,7 @@
 }
 :root.light{
   --primary: var(--deep-ocean-400);
+  --primary-dark: #3c467b70;
   --primary-hover: var(--ocean-300);
   --secondary-hover: var(--ocean-100); 
   --tertiary-hover: var(--seaside-50);
@@ -125,6 +130,11 @@
   --bg: #FFF;
   --chart-text: var(--primary);
   --chart-grid: #0a0a0a20;
+
+  --danger: oklch(0.5 0.05 30);
+  --warning: oklch(0.5 0.05 100);
+  --success: oklch(0.5 0.05 160);
+  --info: oklch(0.5 0.05 260);
 }
 /* BODY/SKY */
 body {
