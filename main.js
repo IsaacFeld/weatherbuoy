@@ -2,14 +2,11 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 const path = require('path')
-
 const requestPath = path.join(__dirname, "public", "debug", "requests")
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 const port = 3001
-
-
 
 app.get('/alert', (req, res) => {
     const email = req.query.email ? req.query.email : null;
@@ -17,12 +14,14 @@ app.get('/alert', (req, res) => {
     res.send('<h3> Alert Creation is not setup yet, please come back later. </h3>')
 })
 
+
+// Retrieving Request File Names as a List
 app.get('/debugdata', (req, res) =>{
     const files = fs.readdirSync(requestPath)
     res.json(files)
 })
 
-// Retrieving Request Files
+// Loading Specific Request Files
 app.get('/request/:requestId', (req, res) =>{
     try{
         request_data = fs.readFileSync(path.join(requestPath, req.params["requestId"]), "utf-8")
@@ -34,11 +33,6 @@ app.get('/request/:requestId', (req, res) =>{
     }
     
 
-})
-
-// TODO
-app.post('/request', (req, res) => {
-    // handle renaming request files
 })
 
 // DELETE REQUEST FILES
@@ -64,7 +58,8 @@ app.delete('/request', (req, res) => {
 
 })
 
-app.post('/debug', async (req, res) => {
+// WRITE REQUEST AS JSON FILES
+app.post('/debugger', async (req, res) => {
     let debugRequestData = summarizeRequest(req);
     let debugRequestBody = req.body
     let fileDate = Date.now();
@@ -95,8 +90,7 @@ app.post('/debug', async (req, res) => {
 
 })
 
-app.get('/debugget', async (req, res) => {
-    console.log("hey")
+app.get('/debugger', async (req, res) => {
     let debugRequestData = summarizeRequest(req);
     let fileDate = Date.now();
     let response;
@@ -105,12 +99,6 @@ app.get('/debugget', async (req, res) => {
     fs.writeFileSync(path.join(requestPath, `${fileName}.json`), JSON.stringify(debugRequest, null, 2))
     res.status(209).json({success: true, message: response})
 })
-
-
-app.listen(port, () => {
-    console.log('Listening on port ', port)
-})
-
 
 function summarizeRequest(req) {
   return {
@@ -131,3 +119,9 @@ function summarizeRequest(req) {
     cookies: req.cookies
   };
 }
+
+app.listen(port, () => {
+    console.log('Listening on port ', port)
+})
+
+

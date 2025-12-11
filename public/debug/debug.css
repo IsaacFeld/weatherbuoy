@@ -1,5 +1,20 @@
+svg{
+    transition: transform 0.25s ease-out;
+}
+
+path{
+    pointer-events: none;
+    transition: fill 0.25s ease-in-out;
+}
+
+span{
+    color: var(--seaside-50);
+}
+
+
 requests{
     opacity: 0;
+    display: flex;
     height: 0;
     transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
     top: 128px;
@@ -7,11 +22,11 @@ requests{
     position: absolute;
     border-radius: 2em;
     padding: 2em;
-    display: flex;
     flex-direction: column;
     row-gap: 1em;
-    width: 400px; overflow-y: scroll;background-color: var(--bg); border: 3px solid var(--primary);
+    width: 400px; overflow-y: scroll;background-color: var(--bg); border: 3px solid var(--primary); 
 }
+
 
 request-selector{
     border: 3px solid var(--primary);
@@ -30,28 +45,9 @@ request-selector.open svg{
     
 }
 
-svg{
-    transition: transform 0.25s ease-out;
-}
-
-path{
-    pointer-events: none;
-    transition: fill 0.25s ease-in-out;
-}
 request-selector:hover path{
     fill: var(--primary-hover);
-  
 }
-
-
-request-selector span{
-    text-align: center;
-}
-requests.active{
-    opacity: 1;
-    height: 600px;
-}
-
 request_file{
     display: flex;
     flex-direction: row;
@@ -87,13 +83,32 @@ request_file svg:hover{
 
 }
 
-span{
-    color: var(--seaside-50);
+request-selector span{
+    text-align: center;
+}
+requests.active{
+    opacity: 1;
+    height: 600px;
+    z-index: 2;
+}
+
+
+.debug_copy:hover path{
+    fill: var(--primary-hover);
+}
+.debug_copy{
+    z-index: 1;
+    border-radius: 4px;
+    padding: 0.25em;
+    transition: background-color 0.175s ease-in-out;
+}
+.debug_copy:hover{
+    background-color: var(--primary-dark);
 }
 
 .debug_title{
     color:var(--primary-hover);
-    font-size: var(--font-title);
+    font-size: 1.5em;
 }
 
 debugdata{
@@ -104,7 +119,7 @@ debugdata.hidden *{
     display: none;
 }
 debugdata *{
-    user-select: all;
+    user-select: none;
 }
 
 debuginfo{
@@ -135,6 +150,17 @@ debuglistitem{
     color: var(--seaside-50)
 }
 
+
+#raw_data{
+    color: var(--seaside-50); 
+    background-color: var(--bg); 
+    height: fit-content; 
+    outline: none; 
+    border: 3px solid var(--primary-hover); 
+    padding: 0.5em; 
+    border-radius: 0.25em;
+
+}
 
 @keyframes deleteRequest {
     100% { transform: translateX(400px);}
