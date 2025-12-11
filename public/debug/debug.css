@@ -9,6 +9,7 @@ path{
 
 span{
     color: var(--seaside-50);
+    font-size: var(--font-content)
 }
 
 
@@ -108,18 +109,20 @@ requests.active{
 
 .debug_title{
     color:var(--primary-hover);
-    font-size: 1.5em;
+    font-size: var(--font-title);
+    user-select: none;
 }
 
 debugdata{
-    display: flex; flex-direction: column; row-gap: 0.5em; width: 80%; height: 600px; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;
+    display: flex; flex-direction: column; 
+    row-gap: 0.5em; width: 80%; height: 75vh; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;
     overflow-y: scroll;
 }
 debugdata.hidden *{
     display: none;
 }
 debugdata *{
-    user-select: none;
+ user-select:text;
 }
 
 debuginfo{
@@ -133,9 +136,10 @@ debuginfo{
 
 .debug_subtitle{
     color: var(--primary);
-    font-size: var(--font-standard);
+    font-size: var(--font-subtitle);
     width: fit-content; 
     text-wrap: nowrap;
+    user-select: none;
 }
 
 debuglist{
@@ -144,9 +148,11 @@ debuglist{
     align-items: center;
     padding: 1em;
     column-gap: 0.5em;
+    font-size: var(--font-content);
 }
 
 debuglistitem{
+    font-size: var(--font-content);
     color: var(--seaside-50)
 }
 
@@ -156,13 +162,29 @@ debuglistitem{
     background-color: var(--bg); 
     height: fit-content; 
     outline: none; 
-    border: 3px solid var(--primary-hover); 
+    border: none;
     padding: 0.5em; 
-    border-radius: 0.25em;
+
 
 }
 
 @keyframes deleteRequest {
     100% { transform: translateX(400px);}
     
+}
+
+.body_list_data{
+    color: var(--seaside-50);
+    font-size: var(--font-content);
+}
+.body_list_title{
+    font-size: var(--font-subtitle);
+    color: var(--seaside-50);
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+.body_list{
+    list-style: none;
+    margin-top: 0.5em;
+
 }

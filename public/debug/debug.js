@@ -44,6 +44,7 @@ document.addEventListener('animationend', (event) => {
 })
 
 async function loadDebugData(){
+
     let debugData = await fetch('/debugdata')
     debugData = await debugData.json();
     if(debugData.length == 0){
@@ -76,18 +77,7 @@ async function loadDebugData(){
                 }
                 else{
                     if(parsedJson.body != null && parsedJson.body.length != 0){
-                        let arrayInfoElement = document.createElement('debuglistitem');
-                        arrayInfoElement.textContent = '['
-                        body.textContent = ''
-                        body.appendChild(arrayInfoElement.cloneNode(true))
-                        for (var prop in parsedJson.body) {
-                            if (Object.prototype.hasOwnProperty.call(parsedJson.body, prop)) {
-                                    arrayInfoElement.innerHTML = `<span style="color: var(--primary)">${prop}:</span> ${parsedJson.body[prop]} `
-                                    body.appendChild(arrayInfoElement.cloneNode(true))
-                            }
-                        }
-                        arrayInfoElement.textContent = ']'
-                        body.appendChild(arrayInfoElement.cloneNode(true))
+                        body.innerHTML = logTheObj(parsedJson.body)
                     }
                     else{
                         body.style.color = "var(--danger)"
@@ -156,7 +146,7 @@ async function loadDebugData(){
 
                         if(params.children.length == 2){
                         params.style.color = "var(--warning)"
-                        params.textContent = "No query found in the request URL."
+                        params.textContent = "No route parameters found in the request URL."
                         }
 
                         protocol.textContent = info.protocol
@@ -198,7 +188,7 @@ async function loadDebugData(){
 
 
                 document.querySelector('#raw_data').value = JSON.stringify(parsedJson);
-                document.querySelector('request-selector').children[0].textContent = request_file
+                document.querySelector('request-selector').children[0].textContent = request_file.split("_")[0] + " | " + prettyDate(request_file.split("_")[1])
             }
         )
         request_container.appendChild(request_file_element)
@@ -206,3 +196,22 @@ async function loadDebugData(){
 }
 
 loadDebugData();
+
+
+// Source - https://stackoverflow.com/a
+// Posted by Rui Paiva
+// Retrieved 2025-12-11, License - CC BY-SA 4.0
+
+function logTheObj(obj) {
+    var ret = "";
+    for (var o in obj) {
+        var data = obj[o];
+        if (typeof data !== 'object') {
+                ret += "<li class='body_list_data'>" + "<span style='color: var(--primary)'>" + o + "</span>"+ " : " + data + "</li>";
+
+        } else {
+            ret += "<li class='body_list_title'>" + o + " : " + logTheObj(data) + "</li>";
+        }
+    }
+    return "<ul class='body_list'>" + ret + "</ul>";
+}
