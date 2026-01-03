@@ -246,7 +246,7 @@ theme-toggle:hover svg, theme-toggle:hover #theme-svg-extra{
 
 #section-one {
   height: 75vh;
-
+  margin-bottom: 2em;
 }
 #section-two {
   padding-bottom: 150px;
