@@ -8,19 +8,73 @@
     <link rel="stylesheet" href="../main.css">
 
 </head>
-<body style="padding: 5em; background-color: var(--bg);">
+<body style="padding: 4em; background-color: var(--bg);">
     <div style="display: flex; flex-direction: column;">
     <div style="display: flex; flex-direction:  row; justify-content: space-between;">
-        <span style="font-size: var(--font-title); color: var(--primary); margin-bottom: 1em;">Big W.B. <span style="color: var(--primary-hover)">Debugger</span> </span>
-        <request-selector onclick="document.querySelector('requests').classList.toggle('active')" style="width: 300px; height: 32px; position: relative; background-color: #FFF;"></request-selector>
-        <requests style="width: 900px; height: fit-content; min-height: 600px; background-color: #FFF;"></requests>
+        <span style="font-size: var(--font-title-emphasized); color: var(--primary); margin-bottom: 1em;">Big W.B. <span style="color: var(--primary-hover); font-size: var(--font-title-emphasized);">Debugger</span> </span>
+        <request-selector class="request_element"  onclick="document.querySelector('requests').classList.toggle('active'); this.classList.toggle('open')"><span class="request_element">No Request Selected</span> <svg style="pointer-events: none; user-select: none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="var(--primary)" d="M11.65 14.65q.15.15.35.15t.35-.15l2.8-2.8q.25-.25.125-.55T14.8 11H9.2q-.35 0-.475.3t.125.55zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></svg></request-selector>
+        <requests class="request_element" >
+        </requests>
     </div>
     
 
-        <debugdata style="display: flex; flex-direction: column; row-gap: 2em; width: 80%; height: 600px; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;">
-            <span>POST REQUEST</span>
+        <debugdata class="hidden">
+            <span class="debug_title" id="request_type"></span>
+            <debuginfo>
+                <span class="debug_subtitle">Protocol:</span>
+                <span id="protocol"></span>
+            </debuginfo>
+            <span class="debug_title">Headers</span>
+            <debuglist id="headers"></debuglist>
+            <span class="debug_title">Body</span>
+            <debuglist id="body"></debuglist>
+            <span class="debug_title">URL Info</span>
+            <debuginfo>
+                <span class="debug_subtitle">URL:</span>
+                <span id="url"></span>
+            </debuginfo>
+            <debuginfo>
+                <span class="debug_subtitle">Path:</span>
+                <span id="path"></span>
+            </debuginfo>
 
-            <data style="color: var(--seaside-50)"></data>
+                <span class="debug_subtitle">URL Query:</span>
+                <debuglist id="query"></debuglist>
+
+
+                <span class="debug_subtitle">URL Params:</span>
+                <debuglist id="params"></debuglist>
+
+
+            <span class="debug_title">Server Info</span>
+            <debuginfo>
+                <span class="debug_subtitle">Hostname:</span>
+                 <span id="hostname"></span>
+            </debuginfo>
+            <debuginfo>
+                <span class="debug_subtitle">IP:</span>
+                 <span id="ip"></span>
+            </debuginfo>
+            <span class="debug_title">Client Info</span>
+            <debuginfo>
+                <span class="debug_subtitle">Client Device:</span>
+                <span id="userAgent"></span>
+            </debuginfo>
+            <debuginfo>
+                <span class="debug_subtitle">Client Origin:</span>
+                <span id="referer"></span>
+            </debuginfo>
+            
+            <span id="important"></span>
+            <span class="debug_title">Raw</span>
+            <debuginfo style="width: 100%;">
+                <textarea  style="resize: none; flex-grow: 1; font-size: var(--font-content)" type="text" id="raw_data"></textarea>
+                <debuginfo>
+                    <svg class="debug_copy" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="var(--primary)" d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z"/></svg>
+                </debuginfo>
+            </debuginfo>
+
+            
         </debugdata>
     </div>
     <script src="debug.js"></script>

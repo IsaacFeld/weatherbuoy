@@ -1,13 +1,190 @@
+svg{
+    transition: transform 0.25s ease-out;
+}
+
+path{
+    pointer-events: none;
+    transition: fill 0.25s ease-in-out;
+}
+
+span{
+    color: var(--seaside-50);
+    font-size: var(--font-content)
+}
+
+
 requests{
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    bottom: 120px;
+    display: flex;
+    height: 0;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
+    top: 128px;
     right: 100px;
     position: absolute;
+    border-radius: 2em;
+    padding: 2em;
+    flex-direction: column;
+    row-gap: 1em;
+    width: 400px; overflow-y: scroll;background-color: var(--bg); border: 3px solid var(--primary); 
+}
+
+
+request-selector{
+    border: 3px solid var(--primary);
+    padding: 0.5em 2em 0.5em 2em;
+    width: 500px; height: 32px; position: relative; background-color: var(--bg); border-radius: 0.5em;
+    display: flex; flex-direction: row; align-items: center; justify-content: center;
+    transition: border-color 0.25s ease-in-out;
+}
+
+request-selector:hover{
+    border-color: var(--primary-hover)
+}
+
+request-selector.open svg{
+    transform: rotate(180deg);
+    
+}
+
+request-selector:hover path{
+    fill: var(--primary-hover);
+}
+request_file{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: fit-content;
+    padding: 0.5em;
+    padding-left: 1em;
+    border: 2px solid var(--primary-dark);
+    border-radius: 0.25em;
+
+    transition: border-color 0.25s ease-in-out;
+}
+request_file.deleted{
+    animation-fill-mode: forwards;
+    animation-duration: 0.25s; 
+    animation-name: deleteRequest;
+    animation-timing-function: ease-out;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+
+}
+
+request_file:hover{
+    border-color: var(--primary);
+}
+request_file svg{
+    padding: 0.5em;
+    transition: background-color 0.175s ease-in-out;
+}
+request_file svg:hover{
+    border-radius: 4px;
+    background-color: rgba(245, 29, 29, 0.265);
+
+}
+
+request-selector span{
+    text-align: center;
 }
 requests.active{
     opacity: 1;
+    height: 600px;
+    z-index: 2;
 }
-span{
+
+
+.debug_copy:hover path{
+    fill: var(--primary-hover);
+}
+.debug_copy{
+    z-index: 1;
+    border-radius: 4px;
+    padding: 0.25em;
+    transition: background-color 0.175s ease-in-out;
+}
+.debug_copy:hover{
+    background-color: var(--primary-dark);
+}
+
+.debug_title{
+    color:var(--primary-hover);
+    font-size: var(--font-title);
+    user-select: none;
+}
+
+debugdata{
+    display: flex; flex-direction: column; 
+    row-gap: 0.5em; width: 80%; height: 75vh; margin: auto; background-color: var(--bg); padding: 2em; border: 3px solid var(--primary-hover); border-radius: 3em;
+    overflow-y: scroll;
+}
+debugdata.hidden *{
+    display: none;
+}
+debugdata *{
+ user-select:text;
+}
+
+debuginfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    column-gap: 1em;
+
+}
+
+.debug_subtitle{
+    color: var(--primary);
+    font-size: var(--font-subtitle);
+    width: fit-content; 
+    text-wrap: nowrap;
+    user-select: none;
+}
+
+debuglist{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+    column-gap: 0.5em;
+    font-size: var(--font-content);
+}
+
+debuglistitem{
+    font-size: var(--font-content);
+    color: var(--seaside-50)
+}
+
+
+#raw_data{
+    color: var(--seaside-50); 
+    background-color: var(--bg); 
+    height: fit-content; 
+    outline: none; 
+    border: none;
+    padding: 0.5em; 
+
+
+}
+
+@keyframes deleteRequest {
+    100% { transform: translateX(400px);}
+    
+}
+
+.body_list_data{
     color: var(--seaside-50);
+    font-size: var(--font-content);
+}
+.body_list_title{
+    font-size: var(--font-subtitle);
+    color: var(--seaside-50);
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+.body_list{
+    list-style: none;
+    margin-top: 0.5em;
+
 }
