@@ -1,4 +1,5 @@
-import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../modules/anime.esm.min.js";
+import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../public/modules/anime.esm.min.js";
+
 
 /* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
@@ -8,6 +9,7 @@ let websiteWidth = document.querySelector('body').clientWidth
 
 let contactMenuHeight = 340;
 let contactMenuWidth = 660;
+
 
 
 /* WAVE ANIMATION */
@@ -564,3 +566,6 @@ document.addEventListener('resize', () => { // Resize Bubble Logic
     bubbleInsert.innerHTML = '';
 
 })
+
+
+
