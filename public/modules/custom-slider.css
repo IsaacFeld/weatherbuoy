@@ -1,0 +1,188 @@
+/* DaisyUI-compatible noUiSlider styles using direct CSS overrides */
+
+/* Base slider styling - preserve noUiSlider positioning */
+.noUi-target {
+  background: #e5e7eb !important; /* gray-200 */
+  border: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+  height: calc(var(--size-selector, 0.25rem) * 6);
+  border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max))) !important;
+  overflow: visible !important;
+}
+
+.noUi-connect {
+  border: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+  background: currentColor !important;
+  border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max)));
+}
+
+.noUi-handle {
+  background: #ffffff !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: currentColor;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
+  cursor: grab !important;
+  top: 0 !important; /* Center in the taller target */
+  transition: transform 0.2s ease !important; /* Smooth scaling transition */
+  border-radius: 9999px !important;
+  height: var(--range-thumb-size);
+  width: var(--range-thumb-size);
+  border: var(--range-p) solid;
+  color: var(--range-progress);
+      box-shadow:
+        0 -1px oklch(0% 0 0 / calc(var(--depth) * 0.1)) inset,
+        0 8px 0 -4px oklch(100% 0 0 / calc(var(--depth) * 0.1)) inset,
+        0 1px color-mix(in oklab, currentColor calc(var(--depth) * 10%), #0000),
+        0 0 0 2rem var(--range-thumb) inset,
+        calc((var(--range-dir, 1) * -100rem) - (var(--range-dir, 1) * var(--range-thumb-size) / 2))
+          0 0 calc(100rem * var(--range-fill));
+}
+
+.noUi-handle:hover {
+  transform: scale(1.5) !important; /* Scale up by 50% on hover */
+}
+
+.noUi-handle-lower {
+  right: -1.5rem !important; /* Shift right by 16px to place fully inside connect */
+}
+
+/* Position right handle (upper) at connect edge */
+.noUi-handle-upper {
+  right: 0 !important; /* Align with connect edge */
+}
+
+/* Hide the default gray lines on the handle */
+.noUi-handle::before,
+.noUi-handle::after {
+  display: none !important;
+}
+
+.noUi-handle:active {
+  cursor: grabbing !important;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+  transform: scale(1.5) !important; /* Scale up by 50% when dragging */
+}
+
+/* Size variants */
+.noUi-target.range-xs {
+    height: calc(var(--size-selector, 0.25rem) * 4) !important;
+}
+
+.noUi-target.range-xs .noUi-handle {
+    height: calc(var(--size-selector, 0.25rem) * 4) !important;
+    width: calc(var(--size-selector, 0.25rem) * 4) !important;
+}
+
+.noUi-target.range-sm {
+    height: calc(var(--size-selector, 0.25rem) * 5) !important;
+}
+
+.noUi-target.range-sm .noUi-handle {
+    height: calc(var(--size-selector, 0.25rem) * 5) !important;
+    width: calc(var(--size-selector, 0.25rem) * 5) !important;
+}
+
+.noUi-target.range-md {
+    height: calc(var(--size-selector, 0.25rem) * 6) !important;
+}
+
+.noUi-target.range-md .noUi-handle {
+    height: calc(var(--size-selector, 0.25rem) * 6) !important;
+    width: calc(var(--size-selector, 0.25rem) * 6) !important;
+}
+
+.noUi-target.range-lg {
+    height: calc(var(--size-selector, 0.25rem) * 7) !important;
+}
+
+.noUi-target.range-lg .noUi-handle {
+    height: calc(var(--size-selector, 0.25rem) * 7) !important;
+    width: calc(var(--size-selector, 0.25rem) * 7) !important;
+}
+
+.noUi-target.range-xl {
+    height: calc(var(--size-selector, 0.25rem) * 8) !important;
+}
+
+.noUi-target.range-xl .noUi-handle {
+    height: calc(var(--size-selector, 0.25rem) * 8) !important;
+    width: calc(var(--size-selector, 0.25rem) * 8) !important;
+}
+
+/* Handle positioning adjustments for small sizes */
+.noUi-target.range-xs .noUi-handle-lower,
+.noUi-target.range-sm .noUi-handle-lower {
+    right: -1rem !important;
+}
+
+/* Touch area extension for better mobile interaction */
+.noUi-touch-area {
+    position: absolute !important;
+    top: -0.25rem !important;
+    bottom: -0.25rem !important;
+    left: -0.25rem !important;
+    right: -0.25rem !important;
+}
+
+/* Adjust tooltip positioning for more space from slider */
+.noUi-tooltip {
+border-radius: 0.5rem;
+  white-space: normal;
+  pointer-events: none;
+  position:absolute !important;
+  bottom:100% !important;
+  inset-inline-start:50% !important;
+  margin-bottom:0.75rem !important;
+  padding-left:0.5rem !important;
+  padding-right:0.5rem !important;
+  padding-top:0.25rem !important;
+  padding-bottom:0.25rem !important;
+  font-size:0.875rem !important;
+  line-height:1.25rem !important;
+  box-shadow:0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgb(0,0,0,0.1), 0 2px 4px -2px rgb(0,0,0,0.1) !important;
+}
+
+.tooltip-primary .noUi-tooltip {
+      background-color: var(--color-primary) !important;
+  color: var(--color-primary-content) !important;
+}
+
+.tooltip-neutral .noUi-tooltip {
+      background-color: var(--color-neutral) !important;
+  color: var(--color-neutral-content) !important;
+}
+
+.tooltip-accent .noUi-tooltip {
+      background-color: var(--color-accent) !important;
+  color: var(--color-accent-content) !important;
+}
+
+.tooltip-secondary .noUi-tooltip {
+      background-color: var(--color-secondary) !important;
+  color: var(--color-secondary-content) !important;
+}
+
+.tooltip-info .noUi-tooltip {
+      background-color: var(--color-info) !important;
+  color: var(--color-info-content) !important;
+}
+
+.tooltip-success .noUi-tooltip {
+      background-color: var(--color-success) !important;
+  color: var(--color-success-content) !important;
+}
+
+.tooltip-warning .noUi-tooltip {
+      background-color: var(--color-warning) !important;
+  color: var(--color-warning-content) !important;
+}
+
+.tooltip-error .noUi-tooltip {
+      background-color: var(--color-error) !important;
+  color: var(--color-error-content) !important;
+}
+

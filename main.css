@@ -1,20 +1,25 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: libSans;
-  src: url(fonts/LiberationSans-Regular.ttf);
+  src: url(/fonts/LiberationSans-Regular.ttf);
 }
 @font-face {
   font-family: libSans;
-  src: url(fonts/LiberationSans-Bold.ttf);
+  src: url(/fonts/LiberationSans-Bold.ttf);
   font-weight: bold;
 }
 @font-face {
   font-family: libSans;
-  src: url(fonts/LiberationSans-Italic.ttf);
+  src: url(/fonts/LiberationSans-Italic.ttf);
   font-style: italic;
 }
 @font-face {
   font-family: libSans;
-  src: url(fonts/LiberationSans-BoldItalic.ttf);
+  src: url(/fonts/LiberationSans-BoldItalic.ttf);
   font-style: italic;
   font-weight: bold;
 }
@@ -37,13 +42,17 @@
   --chart-text: var(--primary);
   --chart-grid: #dff2eb70;
   --primary: var(--deep-ocean-100);
+  --primary-dark: #6e8cfb70;
   --primary-hover: var(--ocean-200);
   --secondary-hover: var(--deep-ocean-400-opaque); 
   --tertiary-hover: var(--seaside-100);
   --contact-primary: #3a94f5;
   --contact-primary-hover: #0055FF;
 
-
+  --danger: oklch(0.7 0.05 30);
+  --warning: oklch(0.7 0.05 100);
+  --success: oklch(0.7 0.05 160);
+  --info: oklch(0.7 0.05 260);
 
   --seaside-50: #dff2eb;
   --seaside-100: #b9e5e8;
@@ -100,6 +109,15 @@
     #ed7464 91%,
     #e94832 100%
   );
+  
+  --freezing: var(--deep-ocean-200);
+  --cold: var(--deep-ocean-100);
+  --chilly: var(--seaside-150);
+  --fair: #76c28f;
+  --warm: #dade75;
+  --swimmable: #eebd79;
+  --hot: #ed7464;
+  --boiling: #e94832;
 
   --font-callout: 48px;
   --font-callout-secondary: 40px;
@@ -114,9 +132,11 @@
   --sec-padding: 60px;
 
   --alert-widh: 500px;
+  
 }
 :root.light{
   --primary: var(--deep-ocean-400);
+  --primary-dark: #3c467b70;
   --primary-hover: var(--ocean-300);
   --secondary-hover: var(--ocean-100); 
   --tertiary-hover: var(--seaside-50);
@@ -125,7 +145,14 @@
   --bg: #FFF;
   --chart-text: var(--primary);
   --chart-grid: #0a0a0a20;
+
+  --danger: oklch(0.5 0.05 30);
+  --warning: oklch(0.5 0.05 100);
+  --success: oklch(0.5 0.05 160);
+  --info: oklch(0.5 0.05 260);
 }
+
+
 /* BODY/SKY */
 body {
   margin: 0px;
@@ -156,7 +183,7 @@ span{
 #headerTitle {
   font-family: "libSans";
   color: var(--primary);
-  font-size: var(--font-title);
+  font-size: var(--font-title   );
   font-weight: bold;
 }
 
@@ -236,7 +263,7 @@ theme-toggle:hover svg, theme-toggle:hover #theme-svg-extra{
 
 #section-one {
   height: 75vh;
-
+  margin-bottom: 2em;
 }
 #section-two {
   padding-bottom: 150px;
@@ -294,81 +321,6 @@ chart-container {
 chart-container.hidden{
   opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
-}
-
-/* ALERT FORM */
-
-#alertSelector {
-  display: block;
-  background-color: var(--seaside-50);
-  height: 40px;
-  width: 250px;
-  border-radius: 10px;
-}
-
-
-input[type="email"]{
-  outline: none;
-  width: 220px; height: 24px;
-  border-radius: 7px;
-  border: none;
-  padding-left: 1em;
-  font-family: 'libSans';
-  font-size: var(--font-standard);
-  font-weight: normal;
-  color: var(--deep-ocean-400)
-}
-#email-row{
-    align-items: center;
-    flex-direction: row;
-}
-temperature-slider{
-  border-radius: 60px;
-  width: 400px;
-  height: 32px;
-  background-image: var(--temp-gradient);
-  align-self: center;
-  margin-top: 2em;
-}
-
-checkbox{
-  background-color: var(--ocean-100);
-  width: 24px;
-  height: 24px;
-  outline: none;
-  border: none;
-  accent-color: transparent;
-  border-radius: 4px;
-}
-checkbox.checked{
-  background-color: var(--ocean-300);
-}
-check{
-  display: block;
-  width: 24px;
-  height: 24px;
-}
-checkbox.checked check{
-  opacity: 1 !important;
-}
-checkbox-container{
-  display: flex;
-  flex-direction: row; 
-  align-items: center; 
-  column-gap: 2em;
-}
-
-button[type="submit"]{
-  background-color: var(--deep-ocean-400);
-  width: 220px;
-  height: 48px;
-  outline: none;
-  border: none;
-  border-radius: 18px;
-  transition: background-color 0.3s ease-in;
-}
-button[type="submit"]:hover{
-  background-color: var(--deep-ocean-300);
 }
 
 /* FISH */
@@ -475,7 +427,7 @@ social a{
   padding-left:8px;
   padding-right: 8px;
   border-radius: 1em;
-  transition: background-color, 0.5s, ease-in;
+  transition: background-color, ease-in 0.2s;  
   width: fit-content;
   text-decoration: none;
 }
@@ -532,6 +484,13 @@ links {
   height: fit-content;
 }
 
+seaweed{
+    display: block;  margin-top: 12em;  overflow: hidden;
+}
+seaweed img{
+    margin-bottom: -20px; overflow: hidden;
+}
+
 @media (max-width: 480px) {
   :root{
   --font-callout: 28px; /* SEC 1 TITLE 48 -> 32 */
@@ -544,15 +503,22 @@ links {
 
   --sec-width: 400px;
   --sec-padding: 0px;
-
-  --alert-width: 95%;
   }
 
   /* HEADER */
   #header{
+    height: fit-content;
+    flex-direction: column;
+    row-gap: 0.5em;
     padding-left: 1em;
     padding-right: 1em;
   }
+  
+  #headerTitle{
+      width: fit-content;   
+      margin-top: 0.5em;
+  }
+  
   .header-container{
     column-gap: 1em;
   }
@@ -578,21 +544,20 @@ links {
   #section-one{
     height: fit-content;
     display: flex;
-    padding-bottom: 50px;
-
+    padding-bottom: 4em;
   }
 
   chart-container {
-      width: 80vw;
+      width: 95vw;
       height: 300px;
       border-radius: 1em;
-      margin-top: 50px;
+      margin-top: 2em;
   }
 
 
   #section-two{
     flex-direction: column;
-    padding: 2.5%;
+    padding: 5%;
     padding-bottom: 100px;
   }
   #section-two-content-container{
@@ -604,31 +569,14 @@ links {
   }
 
   #section-three{
-    padding: 2.5%;
+    padding: 5%;
     height: 320px;
   }
 
   #section-four {
-    padding: 2.5%;
-  }
-
-  #alert{
-    margin: 2.5%;
-  }
-  temperature-slider{
-    width:300px;
-  }
-
-  input[type="email"]{
-  width: 240px;
-  }
-  #email-row{
-    flex-direction: column;
-    row-gap: 1em;
-    align-items: start;
-  } 
-  #alertSelector {
-    width: 140px;
+    padding: 5%;
+    height: 280px;
+    margin-top: 8em;
   }
 
   #fish_insert{
@@ -661,6 +609,15 @@ links {
   }
   .smallBubble{
     width: 6px !important;
+  }
+  
+  /* SEAWEED */
+  seaweed{
+      margin-top: 1em; height: 300x;
+  }
+  
+  seaweed img{
+      margin-bottom: 0px; overflow: hidden; height: 100px; scale: 4;
   }
 
   
