@@ -7,7 +7,7 @@ import path from "path";
 
 import mqtt from "mqtt";
 import { v4 as uuid } from 'uuid'
-import { insertMeasurement, getMeasurements } from './database/db.js'
+import { insertMeasurement, getMeasurements } from './db.js'
 
 /* Express JS settings */
 const port = process.env.PORT;
