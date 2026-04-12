@@ -3,7 +3,13 @@ import { config } from "dotenv";
 config()
 
 import express from "express";
+import { fileURLToPath } from "url";
 import path from "path";
+
+// These two lines are the magic fix for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 import mqtt from "mqtt";
 import { v4 as uuid } from 'uuid'
@@ -12,6 +18,8 @@ import { insertMeasurement, getMeasurements } from './db.js'
 /* Express JS settings */
 const port = process.env.PORT;
 const app = express();
+console.log(__dirname)
+console.log("Serving static files from: ", path.join(__dirname, "dist"))
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
 
