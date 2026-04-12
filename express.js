@@ -12,7 +12,7 @@ import { insertMeasurement, getMeasurements } from './db.js'
 /* Express JS settings */
 const port = process.env.PORT;
 const app = express();
-app.use(express.static(path.join(process.cwd(), "dist")));
+app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
 
 /* MQTT Settings */
@@ -55,7 +55,7 @@ app.get("/alert", (req, res) => {
 });
 
 app.get("/api/data", async (req, res) => {
-  const measurementData = await getMeasurements();
+  const measurementData = getMeasurements();
   const timestamps = measurementData.map(
     (measurement) => measurement.timestamp,
   );
