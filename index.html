@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,7 +95,7 @@
                      </div>
                   </contact-toggle>
                </div>
-               <theme-toggle class="theme-toggle" onclick="this.classList.toggle('theme-toggle--toggled'); document.querySelector('html').classList.toggle('light')"  title="Toggle theme">
+               <theme-toggle class="theme-toggle" onclick="this.classList.toggle('theme-toggle--toggled'); document.querySelector('html').classList.toggle('dark')"  title="Toggle theme">
                   <svg
                      xmlns="http://www.w3.org/2000/svg"
                      aria-hidden="true"
@@ -136,7 +136,20 @@
             <!--<dropdown id="chartSelector"></dropdown> -->
             <chart-container>
                <canvas id="temperature-chart"></canvas>
+               <div class="hidden md:flex flex-row justify-end mt-4">
+                   <button class="py-3 px-3 text-zinc-900   dark:text-(--seaside-50) border-(--seaside-150)  dark:border-primary border-2 border-r-0 rounded-l-lg -skew-x-14 hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterDaily">Daily</button>
+                   <button class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150) dark:border-primary border-2 border-r-0  -skew-x-14 hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterWeekly">Weekly</button>
+                   <button class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150) dark:border-primary border-2 border-r-0  -skew-x-14 hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterMonthly">Monthly</button>
+                   <button class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) dark:border-primary border-2 border-(--seaside-150)  rounded-r-lg -skew-x-14 hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterYearly">Yearly</button>
+               </div>
             </chart-container>
+            <div class="flex flex-row md:hidden justify-end mx-[2.5vw] mt-6">
+                <svg id="changeDateFilterLeft" class="button opacity-50 disabled" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><!-- Icon from Pixelarticons by Gerrit Halfmann - https://github.com/halfmage/pixelarticons/blob/master/LICENSE --><path class="pointer-events-none dark:fill-primary fill-(--seaside-150)" d="M8 13v-2h2v2zm2-2V9h2v2zm0 4v-2h2v2zm2-6V7h2v2zm0 8v-2h2v2zm2-10V5h2v2zm0 12v-2h2v2z"/></svg>
+                <div class="flex flex-row items-center w-20 shadow-2xl dark:bg-primary bg-(--seaside-100) rounded-lg">
+                    <span id="DateFilterLabel" class="text-md dark:text-(--seaside-50) text-black  text-center">Daily</span>
+                </div>
+                <svg id="changeDateFilterRight" class="button" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><!-- Icon from Pixelarticons by Gerrit Halfmann - https://github.com/halfmage/pixelarticons/blob/master/LICENSE --><path class="pointer-events-none dark:fill-primary fill-(--seaside-150)"  d="M16 13v-2h-2v2zm-2-2V9h-2v2zm0 4v-2h-2v2zm-2-6V7h-2v2zm0 8v-2h-2v2zM10 7V5H8v2zm0 12v-2H8v2z"/></svg>
+            </div> 
          </section>
          <div id="waveContainer" style="max-height: 100px; min-height: 100px; margin-bottom: -1px; display: flex; overflow:hidden; justify-content: center;"></div>
       </sky>
