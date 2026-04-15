@@ -316,7 +316,7 @@ theme-toggle:hover #theme-svg-extra {
 
 chart-container {
     display: block;
-    padding: 2em;
+    padding: 1em 2em;
     width: 70%;
     margin: auto;
     height: fit-content;
@@ -522,7 +522,7 @@ seaweed img {
         row-gap: 0.5em;
         padding-left: 1em;
         padding-right: 1em;
-        margin-top: 1em;
+        padding-top: 1em;
     }
 
     #headerTitle {
@@ -539,7 +539,7 @@ seaweed img {
     }
 
     .contactMenuExpanded {
-        top: 4em;
+        top: 3em;
         left: 2%;
     }
 
@@ -560,9 +560,11 @@ seaweed img {
 
     chart-container {
         width: 95vw;
-        height: 300px;
+        height: 350px;
         border-radius: 1em;
         margin-top: 2em;
+        padding: 1em 0.5em; 
+        
     }
 
     #section-two {

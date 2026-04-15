@@ -18,8 +18,7 @@ import { insertMeasurement, getMeasurements } from './db.js'
 /* Express JS settings */
 const port = process.env.PORT;
 const app = express();
-console.log(__dirname)
-console.log("Serving static files from: ", path.join(__dirname, "dist"))
+
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
 
@@ -56,7 +55,6 @@ client.on("connect", () => {
 
 app.get("/alert", (req, res) => {
   const email = req.query.email ? req.query.email : null;
-  console.log(email);
   res.send(
     "<h3> Alert Creation is not setup yet, please come back later. </h3>",
   );
@@ -74,6 +72,14 @@ app.get("/api/data", async (req, res) => {
   const humidity = measurementData.map((measurement) => measurement.humidity);
   res.json({ measurements: { water, air, humidity }, timestamps });
 });
+
+app.get("/api/filter-value", (req, res) => {
+  if(process.env.FILTER_VALUE) {
+    res.json({ value: process.env.FILTER_VALUE });
+  } else {
+    res.json({ value: 100 });
+  }
+})
 
 app.listen(port, () => {
   console.log("Listening on port ", port);

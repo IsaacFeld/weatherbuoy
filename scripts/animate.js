@@ -1,5 +1,4 @@
 import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../public/modules/anime.esm.min.js";
-import { dateFilterIndex, dateFilters } from "./chart.js";
 
 /* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
@@ -464,7 +463,6 @@ document.addEventListener('click', (event) => {
 })
 
 function getCssVar(name) {
-    console.log(name)
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
@@ -570,75 +568,4 @@ document.addEventListener('resize', () => { // Resize Bubble Logic
     utils.remove('.bubble')
     bubbleInsert.innerHTML = '';
 
-})
-
-const label = document.getElementById('DateFilterLabel')
-let labelAnimation = animate(label, {
-  y: [
-    { to: '3.25rem', ease: 'outExpo', duration: 500 },
-    { to: 0, ease: 'outBounce', duration: 650, delay: 100 }
-  ],
-  // Property specific parameters
-  rotate: {
-    from: '-1turn',
-    delay: 0
-  },
-  onUpdate: (a) => {
-    if (a.currentTime > 550) {
-        label.textContent = dateFilters[dateFilterIndex]; 
-    }
-  },
-  delay: stagger(50),
-  ease: 'inOutCirc',
-})
-document.querySelector('#changeDateFilterLeft').addEventListener('click', () => {
-  console.log('left clicked!')
-
-  document.getElementById('changeDateFilterLeft').classList.add('pointer-events-none')
-  if (dateFilterIndex === 0) {
-    document.getElementById('changeDateFilterLeft').classList.add('pointer-events-none')
-    setTimeout(() => {
-      
-      document.getElementById('changeDateFilterRight').classList.remove('pointer-events-none')
-    }, 1200)
-  }
-  else {
-    labelAnimation.pause();   // Stop any current movement
-    labelAnimation.seek(0);    // Force it back to the first frame
-    labelAnimation.play();
-    if (document.getElementById('changeDateFilterRight').classList.contains('pointer-events-none')) {
-      document.getElementById('changeDateFilterRight').classList.remove('pointer-events-none')
-    }
-    console.log('setting timeout for left')
-    setTimeout(() => {
-      console.log('removing for left')
-      document.getElementById('changeDateFilterLeft').classList.remove('pointer-events-none')
-    }, 1200)
-  }
-}) 
-
-document.querySelector('#changeDateFilterRight').addEventListener('click', () => {
-  console.log('right clicked!')
-  document.getElementById('changeDateFilterRight').classList.add('pointer-events-none')
-  
-  if (dateFilterIndex === dateFilters.length - 1) {
-    document.getElementById('changeDateFilterRight').classList.add('pointer-events-none')
-    setTimeout(() => {
-      
-      document.getElementById('changeDateFilterLeft').classList.remove('pointer-events-none')
-    }, 1200)
-  }
-  else {
-    labelAnimation.pause();   // Stop any current movement
-    labelAnimation.seek(0);    // Force it back to the first frame
-    labelAnimation.play();
-    if (document.getElementById('changeDateFilterLeft').classList.contains('pointer-events-none')) {
-      document.getElementById('changeDateFilterLeft').classList.remove('pointer-events-none')
-    }
-    console.log('setting timeout')
-    setTimeout(() => {
-      
-      document.getElementById('changeDateFilterRight').classList.remove('pointer-events-none')
-    }, 1200)
-  }
 })
