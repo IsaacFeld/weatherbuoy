@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
    <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,7 @@
       <sky>
          <header id="header"
             >
-            <span id="headerTitle">Weatherbuoy</span>
+            <span id="headerTitle">weatherbuoy</span>
             <div class="header-container">
                <div  class="contactMenu">
                   <contact-toggle>
@@ -95,7 +95,7 @@
                      </div>
                   </contact-toggle>
                </div>
-               <theme-toggle class="theme-toggle" onclick="this.classList.toggle('theme-toggle--toggled'); document.querySelector('html').classList.toggle('light')"  title="Toggle theme">
+               <theme-toggle class="theme-toggle" onclick="this.classList.toggle('theme-toggle--toggled'); document.querySelector('html').classList.toggle('dark')"  title="Toggle theme">
                   <svg
                      xmlns="http://www.w3.org/2000/svg"
                      aria-hidden="true"
@@ -135,7 +135,35 @@
          <section id="section-one">
             <!--<dropdown id="chartSelector"></dropdown> -->
             <chart-container>
-               <canvas id="temperature-chart"></canvas>
+                    <span class="block text-center text-lg sm:text-2xl font-bold text-primary">Schlachtensee Temperatures</span>
+                    <span id="dateFilterLabel" class="block text-center text-primary"></span>
+                    <div id="dateFilterCarousel" class=" carousel w-full h-70/100 sm:h-9/10  text-center text-lg sm:mt-0 mt-2">
+                      <div id="today" class="carousel-item w-full">
+                        <canvas id="temperature-chart-today"></canvas>
+                      </div>
+                      <div id="week" class="carousel-item w-full">
+                          <canvas id="temperature-chart-week"></canvas>
+                      </div>
+                      <div id="month" class="carousel-item w-full">
+                          <canvas id="temperature-chart-month"></canvas>
+                      </div>
+                      <div id="year" class="carousel-item w-full">
+                          <canvas id="temperature-chart-year"></canvas>
+                      </div>
+                    </div>
+               
+               <div class="hidden sm:flex flex-row justify-end mt-4">
+                   <a href="#today" class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150)  dark:border-primary border-2 border-r-0 rounded-l-lg  hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filtertoday">Today</a>
+                   <a href="#week"  class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150) dark:border-primary border-2 border-r-0   hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterweek">Week</a>
+                   <a href="#month" class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150) dark:border-primary border-2 border-r-0   hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filtermonth">Month</a>
+                   <a href="#year" class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) dark:border-primary border-2 border-(--seaside-150)  rounded-r-lg  hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filteryear">Year</a>
+               </div>
+               <div class="flex flex-row gap-x-0.5  justify-end sm:hidden items-center">
+                   <div id="chiptoday" class="transition-transform transform scale-100 duration-300 ease-in-out w-5 h-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path class="fill-primary" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path class="fill-transparent" d="M8.97 8.97a.75.75 0 0 1 1.06 0L12 10.94l1.97-1.97a.75.75 0 1 1 1.06 1.06L13.06 12l1.97 1.97a.75.75 0 0 1-1.06 1.06L12 13.06l-1.97 1.97a.75.75 0 0 1-1.06-1.06L10.94 12l-1.97-1.97a.75.75 0 0 1 0-1.06"/></svg></div>
+                   <div id="chipweek" class="transition-transform transform scale-100 duration-300 ease-in-out w-5 h-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path class="fill-primary" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path class="fill-transparent" d="M8.97 8.97a.75.75 0 0 1 1.06 0L12 10.94l1.97-1.97a.75.75 0 1 1 1.06 1.06L13.06 12l1.97 1.97a.75.75 0 0 1-1.06 1.06L12 13.06l-1.97 1.97a.75.75 0 0 1-1.06-1.06L10.94 12l-1.97-1.97a.75.75 0 0 1 0-1.06"/></svg></div>
+                   <div id="chipmonth" class="transition-transform transform scale-100 duration-300 ease-in-out w-5 h-5"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path class="fill-primary" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path class="fill-transparent" d="M8.97 8.97a.75.75 0 0 1 1.06 0L12 10.94l1.97-1.97a.75.75 0 1 1 1.06 1.06L13.06 12l1.97 1.97a.75.75 0 0 1-1.06 1.06L12 13.06l-1.97 1.97a.75.75 0 0 1-1.06-1.06L10.94 12l-1.97-1.97a.75.75 0 0 1 0-1.06"/></svg></div>
+                   <div id="chipyear" class="transition-transform transform scale-100 duration-300 ease-in-out w-5 h-5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><path class="fill-primary" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path class="fill-transparent" d="M8.97 8.97a.75.75 0 0 1 1.06 0L12 10.94l1.97-1.97a.75.75 0 1 1 1.06 1.06L13.06 12l1.97 1.97a.75.75 0 0 1-1.06 1.06L12 13.06l-1.97 1.97a.75.75 0 0 1-1.06-1.06L10.94 12l-1.97-1.97a.75.75 0 0 1 0-1.06"/></svg></div>
+               </div>
             </chart-container>
          </section>
          <div id="waveContainer" style="max-height: 100px; min-height: 100px; margin-bottom: -1px; display: flex; overflow:hidden; justify-content: center;"></div>
@@ -232,8 +260,7 @@
                >Information
             </span>
             <span id="sec-3-anim-2" class="sec-3-anim" style="font-size: var(--font-content); color: var(--seaside-100);">
-            Our Temperature measurement device operates with an error margin of
-            5%, so don’t sue us if it ends up being a degree or two off.
+            Our temperature measurement device operates with a 5% margin of error, so don't sue us if it ends up being a degree or two off.
             </span>
             <span id="sec-3-anim-2" class="sec-3-anim" style="font-size: var(--font-content); color: var(--seaside-100);">
             Our device is equipped with a mini solar panel which keeps it charged

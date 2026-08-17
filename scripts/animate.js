@@ -1,6 +1,5 @@
 import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../public/modules/anime.esm.min.js";
 
-
 /* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
 let waterWidth = document.documentElement.clientWidth - 32;
@@ -446,20 +445,24 @@ contactMenu.addEventListener('click', () => {
     }
 
 })
+
+
+
+
 document.addEventListener('click', (event) => {
-    if(contactMenuExpanded.classList.contains('active') && !event.target.classList.contains('contact')){ // So only clicking off of the menu closes it! 
+  
+  if(contactMenuExpanded.classList.contains('active') && !event.target.classList.contains('contact')){ // So only clicking off of the menu closes it! 
         if(event.target != contactMenuExpanded){
             document.querySelector('chart-container').classList.remove('hidden')
             contactMenuAnimation.reverse();
             contactCardTimeline.revert()
         }
 
-    }
+  }
 
 })
 
 function getCssVar(name) {
-    console.log(name)
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
@@ -566,6 +569,3 @@ document.addEventListener('resize', () => { // Resize Bubble Logic
     bubbleInsert.innerHTML = '';
 
 })
-
-
-

@@ -5,6 +5,7 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
+    "postinstall": "npm rebuild sqlite3",
     "start": "node express.js",
     "build": "npx vite build",
     "dev": "npx vite --host"
@@ -19,6 +20,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
     "animejs": "^4.2.0",
+    "better-sqlite3": "^12.9.0",
     "chart.js": "^4.5.1",
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^4.1.0",

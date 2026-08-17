@@ -3,16 +3,23 @@ import { config } from "dotenv";
 config()
 
 import express from "express";
+import { fileURLToPath } from "url";
 import path from "path";
+
+// These two lines are the magic fix for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 import mqtt from "mqtt";
 import { v4 as uuid } from 'uuid'
-import { insertMeasurement, getMeasurements } from './database/db.js'
+import { insertMeasurement, getMeasurements } from './db.js'
 
 /* Express JS settings */
 const port = process.env.PORT;
 const app = express();
-app.use(express.static(path.join(process.cwd(), "dist")));
+
+app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
 
 /* MQTT Settings */
@@ -48,14 +55,13 @@ client.on("connect", () => {
 
 app.get("/alert", (req, res) => {
   const email = req.query.email ? req.query.email : null;
-  console.log(email);
   res.send(
     "<h3> Alert Creation is not setup yet, please come back later. </h3>",
   );
 });
 
 app.get("/api/data", async (req, res) => {
-  const measurementData = await getMeasurements();
+  const measurementData = getMeasurements();
   const timestamps = measurementData.map(
     (measurement) => measurement.timestamp,
   );
@@ -66,6 +72,14 @@ app.get("/api/data", async (req, res) => {
   const humidity = measurementData.map((measurement) => measurement.humidity);
   res.json({ measurements: { water, air, humidity }, timestamps });
 });
+
+app.get("/api/filter-value", (req, res) => {
+  if(process.env.FILTER_VALUE) {
+    res.json({ value: process.env.FILTER_VALUE });
+  } else {
+    res.json({ value: 100 });
+  }
+})
 
 app.listen(port, () => {
   console.log("Listening on port ", port);
