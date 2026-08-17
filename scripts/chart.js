@@ -119,7 +119,10 @@ if (dataResponse.ok && filterValueResponse.ok) {
   const airMeasurements = dataJson.measurements.air.filter((_, i) => i % filterValue === 0).map((value) => (value).toFixed(1))
   const humidityMeasurements = dataJson.measurements.humidity.filter((_, i) => i % filterValue === 0).map((value) => (value).toFixed(1))
   const timestamps = dataJson.timestamps.filter((_, i) => i % filterValue === 0)
-
+  const todayChartEl = document.getElementById("temperature-chart-today");
+  const weekChartEl = document.getElementById("temperature-chart-week");
+  const monthChartEl = document.getElementById("temperature-chart-month");
+  const yearChartEl = document.getElementById("temperature-chart-year");
   Chart.defaults.color = "#6e8cfb"
   Chart.defaults.elements.point.hitRadius = 25;
   Chart.defaults.plugins.legend.display = false;
