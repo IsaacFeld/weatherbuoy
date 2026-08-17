@@ -15,7 +15,17 @@
   border: none !important;
   box-shadow: none !important;
   position: relative !important;
-  background: currentColor !important;
+  background: linear-gradient(
+      to right,
+      var(--freezing),
+      var(--cold),
+      var(--chilly),
+      var(--fair),
+      var(--warm),
+      var(--swimmable),
+      var(--hot),
+      var(--boiling)
+     ) !important;
   border-radius: calc(var(--radius-selector) + min(var(--range-p), var(--radius-selector-max)));
 }
 

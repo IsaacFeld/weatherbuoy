@@ -520,16 +520,16 @@ function animateCard(){
             from: "var(--bg)",
             to: "var(--contact-primary)"
         },
-        duration: 1000,
-        ease: 'inOutBack(0.75)',
+        duration: 300,
+        ease: 'ease-out',
     })
     const contactSvgPathsAnimationTwo = animate(contactSvgPathsIsaac, {
         fill: {
             from: "var(--bg)",
             to: "var(--contact-primary)"
         },
-        duration: 1000,
-        ease: 'out(3)',
+        duration: 300,
+        ease: 'ease-out',
     })
 
     const contactLinksAnimation = animate(contactLinksLars, {
@@ -537,16 +537,16 @@ function animateCard(){
             from: "var(--bg)",
             to: "var(--contact-primary)"
         },
-        duration: 1000,
-        ease: 'inOutBack(0.75)',
+        duration: 300,
+        ease: 'ease-out',
     })
     const contactLinksAnimationTwo = animate(contactLinksIsaac, {
         color: {
             from: "var(--bg)",
             to: "var(--contact-primary)",
         },
-        duration: 1000,
-        ease: 'inOutBack(0.75)',
+        duration: 300,
+        ease: 'ease-out',
     })
         contactCardTimeline.sync(larsOpacityAnimation, 0)
         contactCardTimeline.sync(larsTitleAnimation, 400)
