@@ -118,7 +118,8 @@ if (dataResponse.ok && filterValueResponse.ok) {
   const waterMeasurements = dataJson.measurements.water.filter((_, i) => i % filterValue === 0).map((value) => (value).toFixed(1))
   const airMeasurements = dataJson.measurements.air.filter((_, i) => i % filterValue === 0).map((value) => (value).toFixed(1))
   const humidityMeasurements = dataJson.measurements.humidity.filter((_, i) => i % filterValue === 0).map((value) => (value).toFixed(1))
-  const timestamps = dataJson.timestamps.filter((_, i) => i % filterValue === 0)
+  const timestamps = dataJson.timestamps.filter((_, i) => i % filterValue === 0);
+  
 
   Chart.defaults.color = "#6e8cfb"
   Chart.defaults.elements.point.hitRadius = 25;
@@ -400,12 +401,10 @@ if (dataResponse.ok && filterValueResponse.ok) {
   }
 
 
-
-
-  const todayChart = new Chart(todayChartEl, getConfig('today'));
-  const weekChart = new Chart(weekChartEl, getConfig('week'));
-  const monthChart = new Chart(monthChartEl, getConfig('month'));
-  const yearChart = new Chart(yearChartEl, getConfig('year'));
+  const todayChart = new Chart( document.getElementById("temperature-chart-today"), getConfig('today'));
+  const weekChart = new Chart(document.getElementById("temperature-chart-week"), getConfig('week'));
+  const monthChart = new Chart(document.getElementById("temperature-chart-month"), getConfig('month'));
+  const yearChart = new Chart(document.getElementById("temperature-chart-year"), getConfig('year'));
   const allCharts = [todayChart, weekChart, monthChart, yearChart];
 
 

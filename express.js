@@ -6,7 +6,6 @@ import fs from "fs";
 
 import express from "express";
 import { Resend } from "resend";
-import { render } from "@react-email/render";
 import { fileURLToPath } from "url";
 import path from "path";
 
@@ -23,15 +22,20 @@ import {
   refreshTokens,
   createToken,
   getSubscriptions,
+  deleteSubscription,
+  updateSubscription,
+  generateFakeData,
 } from "./db.js";
 import { aesCipher } from "./crypto.js";
 
 /* Express JS settings */
 const port = process.env.PORT;
 const app = express();
-
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
+
+/* Nodemailer Settings */
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* MQTT Settings */
 const host =
@@ -48,10 +52,9 @@ const options = {
   username: "WEBSITE",
   password: "med2bve*UQD!qrd!huf",
 };
+
 const client = mqtt.connect(host, options);
 
-/* Nodemailer Settings */
-const resend = new Resend(process.env.RESEND_API_KEY);
 client.on("message", (topic, message) => {
   const id = uuid();
   const [water_1, water_2, air, humidity] = message.toString().split(",");
@@ -197,26 +200,26 @@ app.post("/subscribe/manage", async (req, res) => {
     return;
   }
   // Will now refresh tokens, create a token, and send this token to the user.
-  
-  
+
+
   refreshTokens();
-  
+
   const token = aesCipher.getToken().toString("hex");
-  
+
   createToken(token, aesCipher.hash(manageRequest.email));
-  
+
   const emailHtml = fs.readFileSync("emails/Manage.html", { encoding: "utf8" }).replace("{token}", token)
-  
+
   resend.emails.send({
     from: "onboarding@resend.dev",
     to: manageRequest.email,
     subject: "Manage your Weatherbuoy Subscriptions",
     html: emailHtml
   })
-   
+
   res.status(200).json({success: true, message: "Sent an Email!" })
-  
-  
+
+
 })
 
 app.get("/subscribe/manage", async (req, res) => {
@@ -249,6 +252,14 @@ app.get("/api/filter-value", (req, res) => {
     res.json({ value: 100 });
   }
 });
+
+/*
+app.get("/api/fake", (req, res) => {
+  console.log("Generating FAKE DATA!");
+  generateFakeData();
+})
+ */
+
 
 app.listen(port, () => {
   console.log("Listening on port ", port);

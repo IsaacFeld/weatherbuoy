@@ -1,5 +1,6 @@
 import Database from "better-sqlite3";
 import path from "path";
+import { v4 as uuid } from "uuid";
 
 // Setup the path
 const dbPath = path.resolve("database", "measurements.sqlite");
@@ -46,6 +47,14 @@ const insertStmt = db.prepare(`
   INSERT INTO measurements (id, water_1, water_2, air, humidity)
   VALUES (?, ?, ?, ?, ?)
 `);
+const fakeInsertStmt = db.prepare(`
+  INSERT INTO measurements (id, timestamp, water_1, water_2, air, humidity)
+  VALUES (?, ?, ?, ?, ?, ?)
+`);
+
+const fakeDeleteStmt = db.prepare(`
+  DELETE from measurements
+  WHERE true`)
 
 const subscribeStmt = db.prepare(`
   INSERT INTO subscriptions (id, email_enc, email_hash, weekly, min, max)
@@ -153,3 +162,21 @@ export const getSubscriptions = (key) => {
   console.log(`◇ Retrieving subscriptions with ${key}`);
   return getSubscriptionsStmt.all(key);
 };
+
+export const generateFakeData = () => {
+  deleteFakeData()
+  console.log(`Generating fake data over the last week!`);
+  const totalDurationMs = 7 * 24 * 60 * 60 * 1000;
+  let difference = 1000 * 30;
+  let startTime = Date.now() - totalDurationMs;
+
+  let totalEntries = totalDurationMs / difference;
+  
+  for (let i = 0; i < totalEntries; i++) {
+    const timestamp = new Date(startTime + i * difference)
+    fakeInsertStmt.run(uuid(), timestamp.toISOString(), Math.sin(i/30) * 30, Math.sin(i/30) * 30 + (Math.random() * 4), (Math.cos(i) * 10) + 60, (Math.cos(i) *5) + 80);
+  }
+}
+const deleteFakeData = () => {
+  fakeDeleteStmt.run();
+}
