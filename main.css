@@ -64,7 +64,6 @@
     --sec-width: 700px;
     --sec-padding: 60px;
 
-    --alert-widh: 500px;
     
     /* UTILS */
     --bg-gradient: linear-gradient(
@@ -95,7 +94,6 @@
         hsl(219deg 46% 6%) 91%,
         hsl(220deg 30% 4%) 100%
     );
-    
     --seaside-50: #dff2eb;
     --seaside-100: #b9e5e8;
     --seaside-150: #7ab2d3;
@@ -499,7 +497,35 @@ seaweed img {
     overflow: hidden;
 }
 
+.isaacs-toast{
+    scale: 1;
+    opacity: 1;
+    z-index: 50;
+    transition-duration: 250ms;
+    transition-property: scale, opacity;
+    transition-timing-function: ease-out;
+ 
+}
 
+.alert.failure span{
+    color: var(--danger) !important;
+}
+.alert{
+    
+    background-color: var(--bg);
+    color: var(--primary);
+    font-size: var(--font-content);
+    border-color: var(--primary);
+    border-width: 4px;
+    text-align: center;
+}
+.failure{
+    border-color: var(--danger) !important;
+}
+.toast-fade{
+    scale: 0.85;
+    opacity: 0;
+}
 
 @media (max-width: 480px) {
     :root {
@@ -513,6 +539,10 @@ seaweed img {
 
         --sec-width: 400px;
         --sec-padding: 0px;
+    }
+    
+    .alert{
+        font-size: var(--font-standard)
     }
 
     /* HEADER */

@@ -139,8 +139,8 @@
                     <div id="chartErrorMessage" class="text-center p-4 hidden">
                         <span class="text-lg sm:text-xl font-bold text-error">Something went wrong loading temperature data. <br> Please try refreshing the page, if this issue persists come back later.</span>
                     </div>
-                    
-                    <span id="dateFilterLabel" class="block text-center text-primary"></span>
+
+                    <span id="dateFilterLabel" class="block text-center text-primary dark:text-(--seaside-50)"></span>
                     <div id="dateFilterCarousel" class=" carousel w-full h-70/100 sm:h-9/10  text-center text-lg sm:mt-0 mt-2">
                       <div id="today" class="carousel-item w-full">
                         <canvas id="temperature-chart-today"></canvas>
@@ -155,7 +155,7 @@
                           <canvas id="temperature-chart-year"></canvas>
                       </div>
                     </div>
-               
+
                <div id="desktopChartNav" class="hidden sm:flex flex-row justify-end mt-4">
                    <a href="#today" class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150)  dark:border-primary border-2 border-r-0 rounded-l-lg  hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filtertoday">Today</a>
                    <a href="#week"  class="py-3 px-3 text-zinc-900  dark:text-(--seaside-50) border-(--seaside-150) dark:border-primary border-2 border-r-0   hover:bg-(--seaside-100) dark:hover:bg-primary transition-bg duration-300" id="filterweek">Week</a>
@@ -193,68 +193,101 @@
                   color: var(--seaside-50);
                   "
                   >Look no further than our <span class="text-(--seaside-100) font-bold underline">Weekly Newsletter</span>!</span
-                  > 
+                  >
+
                <span  id="sec-2-anim-4"
-                  class="sec-2-anim"
+                  class="sec-2-anim w-5/10!"
                   style="
                   font-size: var(--font-content);
                   color: var(--seaside-50);
                   "
                   >
                       When you subscribe to our mailing list we'll send you weekly detailed reports on the water, air, and humidity at Schlachtensee via Email. <br> Down below, you have the option of choosing to receive alerts for all temperatures, or only specific temperatures that lie within a custom range.
-                     If the average daily temperature of at least one day during the week fits inside your temperature range we'll send you a report, otherwise we'll keep quiet.  
+                     If the average daily temperature of at least one day during the week fits inside your temperature range we'll send you a report, otherwise we'll keep quiet.
                </span>
-               <div id="subscription-box" class="sec-2-anim bg-(--primary-dark) rounded-2xl h-110 w-90vw sm:w-fit p-4 flex flex-col sm:transition-[width] shadow-xl">
-                   <div class="flex flex-col justify-between gap-y-4 h-full">
-                    <span class="text-xl sm:text-2xl text-(--seaside-100) font-bold ml-1">Schlachtensee Newsletter</span>
-                     <div>
-                       <label class="input input-md sm:input-lg validator dark:bg-(--seaside-50) bg-(--bg)">
-                         <svg class="h-[1em] pr-2 border-r-2 border-r-primary text-primary " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                           <g
-                             stroke-linejoin="round"
-                             stroke-linecap="round"
-                             stroke-width="2.5"
-                             fill="none"
-                             stroke="currentColor"
-                           >
-                             <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                           </g>
-                         </svg>
-                         <input type="email" placeholder="Email" class=" text-primary" required />
-                       </label>
-                       <div class="validator-hint hidden">Enter valid email address</div>
-                     </div>
-                     <div class="flex flex-row gap-x-4">
-                         <span id="mailTypeText" class="text-lg text-(--seaside-50) "> All Temperatures </span>
-                         <input id="mailType" type="checkbox" checked="checked" class="toggle toggle-primary bg-(--bg) dark:bg-(--seaside-50) border-none" />
-                     </div>
-                     <span class="h-50 sm:w-120! ml-1" id="tempRangeLabel">
-                          <div class="bg-(--deep-ocean-400-opaque) px-2 pt-4 pb-2 shadow rounded-xl h-fit flex flex-col gap-y-2"> 
-                              <span class="text-error font-bold text-xl">IMPORTANT!</span>
-                              <span class="text-(--seaside-50) "> By selecting "All Temperatures" you agree to let us send you a report every week, no matter the temperature. </span>
-                          </div>
-                     </span>
-                         
-                     <div  id="tempRangeContainer"  class="h-50 sm:w-120! ml-1 hidden">
-                         <div class="bg-(--deep-ocean-400-opaque) px-2 shadow rounded-xl h-fit flex flex-col gap-y-2">
-                             
-                             <div id="tempRangeTextContainer" class="mt-4 flex flex-row justify-between w-full">
-                                 <span id="lowerTemp" class="transition-color text-lg"></span>
-                                 <span id="upperTemp" class="transition-color text-end text-lg"></span>
-                             </div>
-                             <div id="tempRange" class="  w-full range range-md range-primary"></div>
-                             <span class="text-zinc-300/80 mt-4 mb-2 w-full" id="tempRangeExplanation"> </span>
-                         </div>
-                     </div>
+               <div class="flex flex-row gap-4 pr-4 w-full">
+                <div class="sec-2-anim bg-(--primary-dark) rounded-2xl h-110 w-90vw sm:w-fit p-4 flex flex-col sm:transition-[width] shadow-xl">
+                    <div class="flex flex-col justify-between gap-y-4 h-full">
+                        <span class="text-xl sm:text-2xl text-(--seaside-100) font-bold ml-1">Schlachtensee Newsletter</span>
+                        <div>
+                        <label class="input input-md sm:input-lg validator dark:bg-(--seaside-50) bg-(--bg)">
+                            <svg class="h-[1em] pr-2 border-r-2 border-r-primary text-primary " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </g>
+                            </svg>
+                            <input id="emailBox" type="email" placeholder="Email" class=" text-primary" required />
+                        </label>
+                        <div class="validator-hint hidden">Enter valid email address</div>
+                        </div>
+                        <div class="flex flex-row gap-x-4">
+                            <span id="mailTypeText" class="text-lg text-(--seaside-50) "> All Temperatures </span>
+                            <input id="mailType" type="checkbox" checked="checked" class="toggle toggle-primary bg-(--bg) dark:bg-(--seaside-50) border-none" />
+                        </div>
+                        <span class="h-50 sm:w-120! ml-1" id="tempRangeLabel">
+                            <div class="bg-(--deep-ocean-400-opaque) px-2 pt-4 pb-2 shadow rounded-xl h-fit flex flex-col gap-y-2">
+                                <span class="text-error font-bold text-xl">IMPORTANT!</span>
+                                <span class="text-(--seaside-50) "> By selecting "All Temperatures" you agree to let us send you a report every week, no matter the temperature. </span>
+                            </div>
+                        </span>
+
+                        <div  id="tempRangeContainer"  class="h-50 sm:w-120! ml-1 hidden">
+                            <div class="bg-(--deep-ocean-400-opaque) px-2 shadow rounded-xl h-fit flex flex-col gap-y-2">
+
+                                <div id="tempRangeTextContainer" class="mt-4 flex flex-row justify-between w-full">
+                                    <span id="lowerTemp" class="transition-color text-lg"></span>
+                                    <span id="upperTemp" class="transition-color text-end text-lg"></span>
+                                </div>
+                                <div id="tempRange" class="  w-full range range-md range-primary"></div>
+                                <span class="text-zinc-300/80 mt-4 mb-2 w-full" id="tempRangeExplanation"> </span>
+                            </div>
+                        </div>
 
 
-                     <button class="text-(--seaside-50) btn w-30 border-none self-end right-0 bottom-0 bg-(--primary-hover) dark:bg-(--primary) hover:bg-(--deep-ocean-100) dark:hover:bg-(--seaside-150)">Subscribe</button>
-                   </div>
-                   
-               </div> 
-               
-            </div> 
+                        <button id="subscribeButton" class="text-(--seaside-50) btn w-30 border-none self-end right-0 bottom-0 bg-(--primary-hover) dark:bg-(--primary) hover:bg-(--deep-ocean-100) dark:hover:bg-(--seaside-150)">Subscribe</button>
+                    </div>
+
+                </div>
+
+       
+       
+                <div class="sec-2-anim bg-(--primary-dark) rounded-2xl h-fit w-90vw sm:w-fit p-4 flex flex-col sm:transition-[width] shadow-xl">
+                    <div class="flex flex-col justify-between gap-y-4 h-full">
+                        <span class="text-xl sm:text-2xl text-(--seaside-100) font-bold ml-1">Manage Subscriptions</span>
+                        <div>
+                        <label class="input input-md sm:input-lg validator dark:bg-(--seaside-50) bg-(--bg)">
+                            <svg class="h-[1em] pr-2 border-r-2 border-r-primary text-primary " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <g
+                                stroke-linejoin="round"
+                                stroke-linecap="round"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </g>
+                            </svg>
+                            <input id="emailBoxManage" type="email" placeholder="Email" class=" text-primary" required />
+                        </label>
+                        <div class="validator-hint hidden">Enter valid email address</div>
+                        </div>
+                        <button id="manageButton" class="text-(--seaside-50) btn w-30 border-none self-end right-0 bottom-0 bg-(--primary-hover) dark:bg-(--primary) hover:bg-(--deep-ocean-100) dark:hover:bg-(--seaside-150)">Manage</button>
+                    </div>
+
+                </div>
+
+            
+
+               </div>
+            </div>
          </div>
       </section>
       <section id="section-three">
@@ -296,10 +329,10 @@
       </div>
       <div id="bubbleSpawner" style="position: absolute; bottom: 244px;">
       </div>
-      
+
       <script type="module" src="scripts/chart.js"></script>
       <script type="module" src="scripts/animate.js"></script>
       <script type="module" src="scripts/ui.js"></script>
-      
+
    </body>
 </html>
