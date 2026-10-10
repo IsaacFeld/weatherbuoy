@@ -1,4 +1,4 @@
-import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "../public/modules/anime.esm.min.js";
+import { onScroll, utils, animate, stagger, cubicBezier, createTimeline, text } from "animejs";
 
 /* SCREEN SIZE VARIABLES */
 let waterHeight = document.getElementById('underwater').clientHeight
