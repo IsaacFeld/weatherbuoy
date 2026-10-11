@@ -265,6 +265,8 @@ theme-toggle:hover #theme-svg-extra {
     transform: translateY(250px);
 }
 
+
+
 #section-two {
     padding-bottom: 150px;
     z-index: 1;
@@ -284,16 +286,37 @@ theme-toggle:hover #theme-svg-extra {
     display: flex;
     row-gap: 3em;
 }
-#section-two-model-container {
+
+#section-two-model-text-container{
     width: 50%;
-}
-#modelCanvas{
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
 }
 
+#section-two-model-container {
+    width: 100%;
+    height: 75%; 
+}
+
+#schematic-info:hover{
+    border-color: var(--seaside-50);
+}
+
+#schematic-info:hover div{
+    grid-template-rows: 1fr;
+}
+#schematic-info{
+    border-color: transparent;
+    transition: border 0.3s ease-out;
+    
+}
+#schematic-info div{
+    grid-template-rows: 0fr;
+    display: grid;
+    overflow: hidden;
+    transition: grid-template-rows 0.3s ease-out;
+}
 #section-three {
     height: 575px;
     z-index: 1;
@@ -502,6 +525,7 @@ seaweed {
 seaweed img {
     margin-bottom: -20px;
     overflow: hidden;
+    width: 100%;
 }
 
 .isaacs-toast{
@@ -593,6 +617,7 @@ seaweed img {
         display: flex;
         padding-bottom: 4em;
         flex-direction: column;
+        
     }
 
     chart-container {
@@ -617,6 +642,10 @@ seaweed img {
         width: 100%;
     }
 
+    #section-two-model-text-container{
+        display: none;
+    }
+    
     #section-three {
         padding: 5%;
         height: 320px;
@@ -662,13 +691,14 @@ seaweed img {
     /* SEAWEED */
     seaweed {
         margin-top: 1em;
-        height: 300x;
+        display: flex;
+        height: 300px;
     }
 
     seaweed img {
-        margin-bottom: 0px;
-        overflow: hidden;
-        height: 100px;
-        scale: 4;
+        
+        height: 300px;
+        width: 100%;
+        scale: 6;
     }
 }

@@ -243,6 +243,30 @@ createTimeline({
     duration: 1500,
     ease: cubicBezier(0.252, -0.043,0.207,1.1),
 }, '<<')
+.add($sectionTwoElements[5], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 600,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 450)
+.add($sectionTwoElements[6], {
+    y: {
+        from: 250,
+        to: 0,
+    },
+    opacity: {
+        from: 0,
+        to: 1,
+    },
+    duration: 600,
+    ease: cubicBezier(0.252, -0.043,0.207,1.1),
+}, 450)
 
 
 createTimeline({

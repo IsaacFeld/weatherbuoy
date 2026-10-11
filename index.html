@@ -133,7 +133,6 @@
             </div>
          </header>
          <section id="section-one">
-            <!--<dropdown id="chartSelector"></dropdown> -->
             <chart-container>
                     <span class="block text-center text-lg sm:text-2xl font-bold dark:text-(--seaside-50) text-primary">Schlachtensee Temperatures</span>
                     <div id="chartErrorMessage" class="text-center p-4 hidden">
@@ -196,14 +195,15 @@
                   >
 
                <span  id="sec-2-anim-4"
-                  class="sec-2-anim w-5/10!"
+                  class="sec-2-anim w-full"
                   style="
                   font-size: var(--font-content);
                   color: var(--seaside-50);
                   "
                   >
-                      When you subscribe to our mailing list we'll send you weekly detailed reports on the water, air, and humidity at Schlachtensee via Email. <br> Down below, you have the option of choosing to receive alerts for all temperatures, or only specific temperatures that lie within a custom range.
-                     If the average daily temperature of at least one day during the week fits inside your temperature range we'll send you a report, otherwise we'll keep quiet.
+                      When you subscribe to our mailing list we'll send you weekly detailed reports on the water, air, and humidity at Schlachtensee via Email. Down below, you have the option of choosing to receive alerts for all temperatures, or only specific temperatures that lie within a custom range.
+                     If the average daily temperature of at least one day during the week fits inside your temperature range we'll send you a report, otherwise we'll keep quiet. <br> <br>
+                      <span>Already subscribed? If you came here to cancel a subscription or tweak an existing one, enter the email you used to subscribe in the <span style="color: var(--seaside-100); font-weight: bold;">Manage Subscriptions</span> box below & we'll send you a link that'll let you view all your subscriptions in one place!</span>
                </span>
                <div class="flex flex-row gap-4 pr-4 w-full flex-wrap">
                 <div class="sec-2-anim bg-(--primary-dark) rounded-2xl h-110 w-90vw sm:w-fit p-4 flex flex-col sm:transition-[width] shadow-xl">
@@ -279,7 +279,7 @@
                         </label>
                         <div class="validator-hint hidden">Enter valid email address</div>
                         </div>
-                        <button id="manageButton" class="text-(--seaside-50) btn w-30 border-none self-end right-0 bottom-0 bg-(--primary-hover) dark:bg-(--primary) hover:bg-(--deep-ocean-100) dark:hover:bg-(--seaside-150)">Manage</button>
+                        <button id="manageButton" class="text-(--seaside-50) btn w-30 border-none self-end right-0 bottom-0 bg-(--primary-hover) dark:bg-(--primary) hover:bg-(--deep-ocean-100) dark:hover:bg-(--seaside-150)">Send Link</button> 
                     </div>
 
                 </div>
@@ -288,9 +288,15 @@
 
                </div>
             </div>
-            <div id="section-two-model-container">
-                <canvas id="modelCanvas"></canvas>
+            <div id="section-two-model-text-container">
+                <div class="sec-2-anim" id="section-two-model-container">
+                </div>
+                    <div id="schematic-info" class="bg-(--primary-dark) w-100 px-4 py-2 rounded-xl border-2 text-center self-center sec-2-anim">
+                        <span  style="font-size: var(--font-subtitle); font-weight:bold;  color: var(--seaside-50); text-align: center;">Weatherbuoy PCB Schematic</span>
+                        <div class=" pl-4"><span style="font-size: var(--font-content); text-align: start; min-height: 0px; ">This is a schematic of our version 3.0 printed circuit board for Weatherbuoy, essentially the brains of this whole operation.</span></div>
+                    </div>
             </div>
+            
          </div>
       </section>
       <section id="section-three">
@@ -328,7 +334,7 @@
             </div>
       </section>
       <seaweed>
-      <img style="" src="svgs/seaweed2.svg"  alt="seaweed" />
+      <img src="svgs/seaweed2.svg"  alt="seaweed" /> 
       </seaweed>
       </div>
       <div id="bubbleSpawner" style="position: absolute; bottom: 244px;">

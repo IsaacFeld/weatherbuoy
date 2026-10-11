@@ -32,7 +32,10 @@ import { aesCipher } from "./crypto.js";
 const port = process.env.PORT;
 const app = express();
 app.use(express.static(path.join(__dirname, "dist")));
+app.use('/models', express.static(process.env.MODEL_PATH)) // Needs to be inserted into the Railway Volume
 app.use(express.json());
+
+
 
 /* Nodemailer Settings */
 const resend = new Resend(process.env.RESEND_API_KEY);
